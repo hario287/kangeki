@@ -1,4 +1,9 @@
 class Review < ApplicationRecord
+  belongs_to :user
+  has_many :favorites, dependent: :destroy
+  has_many :review_comments, dependent: :destroy
+
+# 公演場所
   enum stage_prefecture:{
      "---":0,
      北海道:1,青森県:2,岩手県:3,宮城県:4,秋田県:5,山形県:6,福島県:7,
