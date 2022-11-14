@@ -29,3 +29,4 @@ scope module: :public do
     resource :favorites, only: [:create, :destroy]
   end
 end
+end

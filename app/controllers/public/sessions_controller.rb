@@ -13,30 +13,20 @@ class Public::SessionsController < Devise::SessionsController
     new_user_session_path
   end
 
-  # ゲストユーザー
-  def guest_sign_in
-    user = User.guest
-    sign_in user
-    redirect_to root_path, notice: "ゲストユーザーとしてログインしました"
-  end
-
-  private
-
-  def ensure_guest_user
-    @user = User.find(params[:id])
-    if @user.name == "GuestUser"
-      redirect_to user_path(current_user) , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
-    end
-  end
-
   protected
   # 退会しているかを判断するメソッド
   def user_state
     @user = Userr.find_by(email: params[:user][:email])
     return if !@user
     if @user.valid_password?(params[:user][:password]) && (@user.is_deleted == true)
-      redirect_to new_user_registration_path, notice: "退会済みです。"
+      flash[:notice] = "退会済みです。再度ご登録をしてください。"
+      redirect_to new_user_registration_path
     else
+       flash[:notice] = "項目を入力してください"
     end
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name,:email])
+  end
 end
 
