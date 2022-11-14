@@ -117,6 +117,7 @@ ActiveRecord::Schema.define(version: 2022_11_12_145755) do
     t.string "stage_name", null: false
     t.string "group", null: false
     t.text "body", null: false
+    t.float "rate", default: 0.0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

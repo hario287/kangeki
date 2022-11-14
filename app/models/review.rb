@@ -20,4 +20,9 @@ class Review < ApplicationRecord
    # タグのリレーション
   has_many :review_tag_relationships,dependent: :destroy
   has_many :tags,through: :review_tag_relationships
+
+  # レビュー評価
+  validates :rate, numericality: {
+    less_than_or_equal_to: 5,
+    greater_than_or_equal_to: 1}, presence: true
 end
