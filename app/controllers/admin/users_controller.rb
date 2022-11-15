@@ -2,11 +2,13 @@ class Admin::UsersController < ApplicationController
 before_action :authenticate_admin!
 
   def index
-    @user = User.page(params[:page]).per(10)
+    @user = User.page(params[:page])
   end
 
   def show
     @user = User.find(params[:id])
+    @posts = @user.posts.page(params[:page])
+    @reviews = @user.reviews.page(params[:page])
   end
 
   def edit
@@ -15,12 +17,15 @@ before_action :authenticate_admin!
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to admin_users_path(@user.id)
+    if @user.update(user_params)
+      redirect_to admin_user_path(@user), notice: "情報を編集しました。"
+    else
+      render :edit
+    end
   end
 
   private
   def user_params
-    params.require(:user).permit(:name, :introduction, :email, :is_deleted)
+    params.require(:user).permit(:name, :introduction, :email, :profile_image, :is_deleted)
   end
 end

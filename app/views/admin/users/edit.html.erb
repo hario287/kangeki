@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <div class="container">
   <div class="row">
-    <div class='col-md-8'>
-      <div class="d-inline-block px-3 m-3" style="background-color: #eee;">
-        <h3 class="m-0">
-        <%= @user.name %>さんの会員情報編集</h3>
-      </div>
+    <h3 class="col-8"><%= @user.name %>さんのプロフィール編集</h3>
+  </div>
 
-      <%= form_with model: @user, url: admin_user_path(@user), local:true, method: :patch do |f| %>
-      <table class="table table-borderless table-sm">
-        <tr><%= image_tag user.get_profile_image, size:'100x100' %></tr>
+  <div class="col-8 pt-3">
+    <%= form_with model: @user, url: admin_user_path(@user), local:true, method: :patch do |f| %>
+      <table class="table table-borderless">
         <div class="field">
           <tr>
-          <td><%= f.label :"会員番号" %></td>
+          <td><%= f.label :"プロフィール画像" %></td>
+          <td colspan='2'><%= f.file_field :profile_image, accept: "image/*", class: 'profile_image' %></td>
+          <td><%= image_tag @user.get_profile_image(200,200), class: "img_prev" %></td>
+          </tr>
+        </div>
+        <div class="field">
+          <tr>
+          <td><%= f.label :"ユーザーID" %></td>
           <td colspan='2'><%= @user.id %></td>
           </tr>
         </div>
         <div class="field">
           <tr>
-          <td><%= f.label :"名前" %></td>
+          <td><%= f.label :"ユーザーネーム" %></td>
           <td><%= f.text_field :name, style: "margin-left:40px;", autocomplete: "name" %></td>
           </tr>
         </div>
@@ -27,6 +31,13 @@
           <tr>
           <td><%= f.label :"自己紹介" %></td>
           <td><%= f.text_field :introduction, style: "margin-left:40px;" %></td>
+          </tr>
+        </div>
+
+        <div class="field">
+          <tr>
+          <td><%= f.label :"地域" %></td>
+          <td><%= f.select :user_prefecture, User.user_prefectures.keys, {} %></td>
           </tr>
         </div>
 
