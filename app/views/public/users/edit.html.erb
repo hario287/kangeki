@@ -7,6 +7,16 @@
       <table class="table table-borderless table-sm">
         <div class="field">
           <tr>
+          <td><%= f.label :"プロフィール画像" %></td>
+          <td>
+            <%= f.file_field :profile_image, class: "img_field" %>
+            <%= image_tag @user.get_profile_image(200,200), onClick: "$('.img_field').click()", class: "img_prev" %>
+          </td>
+          </tr>
+        </div>
+
+        <div class="field">
+          <tr>
           <td><%= f.label :"ユーザーネーム" %></td>
           <td><%= f.text_field :name %></td>
           </tr>
@@ -21,6 +31,13 @@
 
         <div class="field">
           <tr>
+          <td><%= f.label :"地域" %></td>
+          <td><%= f.select :user_prefecture, User.user_prefectures.keys, {} %></td>
+          </tr>
+        </div>
+
+        <div class="field">
+          <tr>
           <td><%= f.label :"メールアドレス" %></td>
           <td><%= f.text_field :email %></td>
           </tr>
@@ -28,7 +45,7 @@
 
         <div class="field">
          <td><%= f.submit"保存", class: "btn btn-success" %></td>
-         <td><%= link_to "退会する", users_unsubscribe_path(current_user), class: "btn btn-danger" %></td>
+         <td><%= link_to "退会する", users_unsubscribe_path(current_user) %></td>
         </div>
 
        </table>
