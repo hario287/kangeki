@@ -1,4 +1,4 @@
-class Admin::UserReviewsController < ApplicationController
+class Admin::ReviewsController < ApplicationController
   before_action :authenticate_admin!
 
   def index

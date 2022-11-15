@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
 
+  namespace :admin do
+    get 'review_comments/index'
+    get 'review_comments/destroy'
+  end
+  namespace :admin do
+    get 'post_comments/index'
+    get 'post_comments/destroy'
+  end
  root 'public/homes#top'
 
 #ゲストユーザー用
