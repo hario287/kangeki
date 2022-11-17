@@ -1,7 +1,7 @@
 class Tag < ApplicationRecord
-  has_many :review_tag_relationships,dependent: :destroy, foreign_key: 'tag_id'
+  has_many :review_tags,dependent: :destroy, foreign_key: 'tag_id'
   # タグは複数の投稿を持つ　それは、review_tag_relationshipsを通じて参照できる
-  has_many :reviews,through: :review_tag_relationships
+  has_many :reviews,through: :review_tags
 
   # validates :name, uniqueness: true, presence: true
 end

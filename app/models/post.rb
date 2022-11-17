@@ -3,8 +3,9 @@ class Post < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   belongs_to :category
 
-  # validates :title,presence:true
-  # validates :body,presence:true
+  validates :title,presence: true
+  validates :body,presence: true
+  validates :category, presence: true
 
   has_one_attached :post_image
 
