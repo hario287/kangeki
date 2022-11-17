@@ -10,9 +10,9 @@
     <%= f.text_field :tag_name %>
   </div>
 
-  <% if review.id === nil %>
+  <!--< % if review.id === nil %>-->
     <div class="form-group" id="star">
-      <%= f.label :rate %>
+      <%= f.label :rate,"満足度", class: 'star-title' %>
       <%= f.hidden_field :rate, id: :review_star, class:'form-control' %>
     </div>
 
@@ -31,9 +31,9 @@
      });
     </script>
 
-  <% else %>
-    <%= render "static_rate", book: book %>
-  <% end %>
+  <!--< % else %>-->
+    <%= render "static_rate", review: @review %>
+  <!--< % end %>-->
 
   <div class="form-group">
     <%= f.label "公演団体" %>

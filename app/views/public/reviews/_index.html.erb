@@ -11,22 +11,22 @@
   <tbody>
     <% reviews.each do |review| %>
       <tr>
-        <td><%= link_to(review.user) do %>
-          <%= image_tag review.user.get_profile_image, size:'50x50' %>
+        <td><%= link_to(review) do %>
+          <%= image_tag review.user.get_profile_image(50,50) %>
           <% end %>
         </td>
-        <td><%= link_to review.title,review, class: "review_#{review.id}" %></td>
+        <td><%= link_to review.stage_name,review, class: "review_#{review.id}" %></td>
         <td><%= review.body %></td>
         <td>
           <% review.tags.each do |tag| %>
             <li style="list-style: none;"><%= link_to tag.name, search_path(content: tag.name, model:"tag", method: "perfect") %></li>
           <% end %>
         </td>
-        <td class=<%= "favorite-" + review.id.to_s %> >
-            <%= render "favorites/btn", review: review %>
-        </td>
-        <td><%= render "review_comments/counter", review: review %></td>
-        <td><%= render "reviews/static_rate", review: review %></td>
+        <!--<td class=< %= "favorite-" + review.id.to_s %> >-->
+        <!--    < %= render "favorites/btn", review: review %>-->
+        <!--</td>-->
+        <!--<td>< s%= render "review_comments/counter", review: review %></td>-->
+        <td><%= render "public/reviews/static_rate", review: review %></td>
       </tr>
     <% end %>
   </tbody>

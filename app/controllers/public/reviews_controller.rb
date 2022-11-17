@@ -6,7 +6,7 @@ class Public::ReviewsController < ApplicationController
     @review = Review.find(params[:id])
     # @user = @review.user
     @review_comment = ReviewComment.new
-    impressionist(@review, nil, :unique => [:ip_address])
+
   end
 
   def create
@@ -23,19 +23,16 @@ class Public::ReviewsController < ApplicationController
   end
 
   def index
-    # if params[:sort] == nil
-    #   to = Time.current.at_end_of_day
-    #   from = to - 1.week
-    #   @reviews = Review.includes(:favorites).sort {
-    #     |a,b| b.favorites.where(created_at: from..to).size <=>
-    #     a.favorites.where(created_at: from..to).size
-    #     }
-    # else
-    #   @reviews = Review.all.order(params[:sort])
-    # end
-    # @review = Review.new
-
-    @reviews = Review.all.order(params[:sort])
+    if params[:sort] == nil
+      to = Time.current.at_end_of_day
+      from = to - 1.week
+      @reviews = Review.includes(:favorites).sort {
+        |a,b| b.favorites.where(created_at: from..to).size <=>
+        a.favorites.where(created_at: from..to).size
+        }
+    else
+      @reviews = Review.all.order(params[:sort])
+    end
     @review = Review.new
   end
 
@@ -61,7 +58,7 @@ class Public::ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:title, :body, :rate)
+    params.require(:review).permit(:stage_prefecture, :stage_name, :group, :body, :rate)
   end
   def ensure_correct_user
     @review = Review.find(params[:id])
