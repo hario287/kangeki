@@ -8,7 +8,7 @@ import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 import jQuery from "jquery"
-import raty from 'raty-js'
+// import raty from 'raty-js'
 import "popper.js";
 import "bootstrap";
 import "../stylesheets/application"

@@ -38,12 +38,12 @@ scope module: :public do
     resources :review_comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
   end
- end
 
-  get "users/mypage" => "users#show"
+  get "/users/mypage" => "users#show"
   get "users/information/edit" => "users#edit"
   patch "users/information" => "users#update"
 
   get "users/unsubscribe" => "users#unsubscribe"
   patch "users/withdraw" => "users#withdraw"
   end
+end

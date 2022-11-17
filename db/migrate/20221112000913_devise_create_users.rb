@@ -34,7 +34,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
 
       t.string :name, null: false
       t.text :introduction
-      t.integer :prefecture_id, null: false
+      t.integer :user_prefecture
       # ユーザーステータス
       t.boolean :is_deleted, null: false, default: false
 
