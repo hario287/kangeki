@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_12_145755) do
+ActiveRecord::Schema.define(version: 2022_11_17_020606) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -97,12 +97,12 @@ ActiveRecord::Schema.define(version: 2022_11_12_145755) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "review_tag_relationships", force: :cascade do |t|
+  create_table "review_tags", force: :cascade do |t|
     t.integer "review_id", null: false
     t.integer "tag_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["review_id", "tag_id"], name: "index_review_tag_relationships_on_review_id_and_tag_id", unique: true
+    t.index ["review_id", "tag_id"], name: "index_review_tags_on_review_id_and_tag_id", unique: true
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -117,7 +117,7 @@ ActiveRecord::Schema.define(version: 2022_11_12_145755) do
   end
 
   create_table "tags", force: :cascade do |t|
-    t.string "tag_name"
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -130,7 +130,7 @@ ActiveRecord::Schema.define(version: 2022_11_12_145755) do
     t.datetime "remember_created_at"
     t.string "name", null: false
     t.text "introduction"
-    t.integer "prefecture_id", null: false
+    t.integer "user_prefecture"
     t.boolean "is_deleted", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
