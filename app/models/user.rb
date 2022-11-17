@@ -19,8 +19,8 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :review_comments, dependent: :destroy
 
-  validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
-  validates :introduction
+  # validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
+  # validates :introduction
 
   # ゲストユーザー
   def self.guest

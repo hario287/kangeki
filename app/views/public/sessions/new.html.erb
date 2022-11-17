@@ -1,36 +1,29 @@
-<body class="text-center">
-  <form class="form-signin">
-  <h1 class="h3 mb-3 font-weight-normal">サインイン</h1>
-
-  <%= form_with model: resource, url: new_user_session_path do |f| %>
-    <table>
-      <tbody>
-        <tr>
-          <td><%= f.label :email,"メールアドレス",style: "padding-left:0px;" %></td>
-          <td><%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com",style: "margin-left:40px;", size: "40px" %></td>
-        </tr>
-        <tr>
-          <td><%= f.label :password,"パスワード" %></td>
-          <td><%= f.password_field :password, autocomplete: "current-password",style: "margin-left:40px;", size: "40px" %></td>
-        </tr>
-        <tr>
-          <% if devise_mapping.rememberable? %>
-          <td class="field">
-          <%= f.check_box :remember_me %>
-          <%= f.label :remember_me %>
-          </td>
-          <% end %>
-        </tr>
-        <tr>
-          <td></td>
-            <td class="actions">
-              <%= f.submit "ログイン",class: 'btn btn-sm btn-primary', style: "font-weight:bold; margin-top:20px; margin-left:40px;" %>
-            </td>
-        </tr>
-      </tbody>
-    </table>
-  <% end %>
- <p>会員登録がお済みでない方</p>
-  <p><%= link_to "こちら", "/users/sign_up" %>から新規登録を行ってください。</p>
+<div class="container">
+  <div class="row text-center">
+    <div class="col-7 col-md-3 mx-auto">
+      <h2 class="md-3 pt-5"><i class="fas fa-user-check" style="color: #9C8D65;"></i> ログイン</h2>
+      </br>
+      <%= form_with model: @user, url: user_session_path do |f| %>
+        <div class="field">
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"Email" %>
+        </div>
+        </br>
+        <div class="field">
+          <%= f.password_field :password, autocomplete: "current-password", placeholder:"Password" %>
+        </div>
+        <p>
+        <% if devise_mapping.rememberable? %>
+          <div class="field">
+            <%= f.check_box :remember_me %>
+            <%= f.label :remember_me %>
+          </div>
+        <% end %>
+        </br>
+        <div class="col-7 mx-auto">
+          <%= f.submit "Log In", class: "btn btn-info btn-sm btn-block mb-3" %>
+        </div>
+      <% end %>
+        <%= render "public/shared/links" %>
+    </div>
   </div>
-</body>
+</div>

@@ -7,15 +7,15 @@ class Review < ApplicationRecord
   has_many :tags,through: :review_tags
 
   # バリデーション
-  validates :title, presence: true, length: { maximum: 20 }
-  validates :body, presence: true, length: { maximum: 200 }
-  validates :area, presence: true
-  validates :tag_ids, presence: true
-  validates :rate, presence: true
-  # レビュー評価
-  validates :rate, numericality: {
-  less_than_or_equal_to: 5,
-  greater_than_or_equal_to: 1}, presence: true
+  # validates :title, presence: true, length: { maximum: 20 }
+  # validates :body, presence: true, length: { maximum: 200 }
+  # validates :area, presence: true
+  # validates :tag_ids, presence: true
+  # validates :rate, presence: true
+  # # レビュー評価
+  # validates :rate, numericality: {
+  # less_than_or_equal_to: 5,
+  # greater_than_or_equal_to: 1}, presence: true
 
 
   # 公演場所
