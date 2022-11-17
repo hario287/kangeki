@@ -13,19 +13,19 @@
     <% posts.each do |post| %>
       <tr>
         <td>
-          <%= link_to(post.user) do %>
-          <%= image_tag review.user.get_profile_image(50,50) %>
+          <%= link_to post_path(post.user) do %>
+          <%= image_tag post.user.get_profile_image(50,50) %>
           <% end %>
         </td>
         <td><%= link_to post.title,post_path(post.id) %></td>
         <td><%= post.body %></td>
 
-        <td id="favorite_buttons_<%= post.id %>">
-          <%= render "favorites/favorites", post: post %></td>
+        <!--<td id="favorite_buttons_< %= post.id %>">-->
+        <!--  < %= render "favorites/favorites", post: post %></td>-->
 
         <td>コメント数：<%= post.post_comments.count %></td>
 
-        <td class="view-count">閲覧数: <%= post.view_counts.count %></td>
+        <!--<td class="view-count">閲覧数: < %= post.view_counts.count %></td>-->
       </tr>
     <% end %>
   </tbody>
