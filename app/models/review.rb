@@ -2,8 +2,23 @@ class Review < ApplicationRecord
   belongs_to :user
   has_many :favorites, dependent: :destroy
   has_many :review_comments, dependent: :destroy
+   # タグのリレーション
+  has_many :review_tags,dependent: :destroy
+  has_many :tags,through: :review_tags
 
-# 公演場所
+  # バリデーション
+  validates :title, presence: true, length: { maximum: 20 }
+  validates :body, presence: true, length: { maximum: 200 }
+  validates :area, presence: true
+  validates :tag_ids, presence: true
+  validates :rate, presence: true
+  # レビュー評価
+  validates :rate, numericality: {
+  less_than_or_equal_to: 5,
+  greater_than_or_equal_to: 1}, presence: true
+
+
+  # 公演場所
   enum stage_prefecture:{
      "---":0,
      北海道:1,青森県:2,岩手県:3,宮城県:4,秋田県:5,山形県:6,福島県:7,
@@ -17,12 +32,4 @@ class Review < ApplicationRecord
      沖縄県:47
    }
 
-   # タグのリレーション
-  has_many :review_tag_relationships,dependent: :destroy
-  has_many :tags,through: :review_tag_relationships
-
-  # レビュー評価
-  validates :rate, numericality: {
-    less_than_or_equal_to: 5,
-    greater_than_or_equal_to: 1}, presence: true
 end
