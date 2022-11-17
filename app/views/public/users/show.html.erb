@@ -1,42 +1,20 @@
 <!DOCTYPE html>
-<div class="container">
-  <div class="row justify-content-center">
-    <h4 class="col-12 pt-3"><strong><%= @user.name %>さんのマイページ</strong></h4>
-      <div class="user-image">
-        <%= image_tag @user.get_profile_image(200,200), class: "rounded-circle" %>
-      </div>
+<div class='container px-5 px-sm-0'>
+  <div class='row'>
+    <h4 class="col-md-12 pt-3"><strong><%= @user.name %>さんのマイページ</strong></h4>
+     <%= render 'info', user: @user %>
+  </div>
+</div>
 
-    <table class="col-4">
-  	  <td class="info">ユーザーネーム</td>
-  	  <td><%= @user.name %></td>
-    </tr>
-     <tr>
-  	  <td class="info">自己紹介</td>
-  	  <td><%= @user.introduction %></td>
-    </tr>
-    <tr>
-  	  <td class="info">地域</td>
-  	  <td><%= @user.user_prefecture %></td>
-    </tr>
-     <tr>
-  	  <td class="info">メールアドレス</td>
-  	  <td><%= @user.email %></td>
-    </tr>
-  </table>
-
-      <div class='row'>
-        <% if @user == current_user %>
-          <div class=" col-7 mt-3">
-            <%= link_to "プロフィール編集", users_information_edit_path(@user), class: "btn btn-outline-secondary" %>
-          </div>
-        <% end %>
+<div class='container'>
+  <div class='row'>
+    <div class="col-6 md-3">
+      レビュー
+      <%= link_to '一覧を見る', reviews_path, class: "btn btn-sm btn-info" %>
     </div>
-
-      <table class="table table-borderless">
-        <thead>
-          <th>レビュー</th>
-          <th><%= link_to '一覧を見る', reviews_path, class: "btn btn-sm btn-primary" %></th>
-          <th>投稿</th>
-          <th><%= link_to '一覧を見る', posts_path, class: "btn btn-sm btn-primary" %></th>
-        </thead>
-      </table>
+    <div class="col-6 md-3">
+      投稿
+      <%= link_to '一覧を見る', posts_path, class: "btn btn-sm btn-info" %>
+    </div>
+  </div>
+</div>

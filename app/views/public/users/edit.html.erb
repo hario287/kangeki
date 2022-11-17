@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <div class="container">
-  <h2 class="m-0">ユーザー情報編集</h2>
-</div>
+  <div class='row'>
+    <div class="col-sm-12 col-md-8 col-lg-8 px-5 px-sm-0 mx-auto">
+      <h2>ユーザー情報編集</h2>
 
-    <%= form_with model: @user, url: users_information_path, method: :patch, local:true do |f| %>
+    <%= form_with model:@user, url: users_information_path, method: :patch, local:true do |f| %>
+    <%= render 'layouts/errors', obj: @user %>
       <table class="table table-borderless table-sm">
-        <div class="field">
+        <div class="form-group">
           <tr>
           <td><%= f.label :"プロフィール画像" %></td>
           <td>
@@ -24,7 +26,7 @@
 
         <div class="field">
           <tr>
-          <td><%= f.label :"イントロダクション" %></td>
+          <td><%= f.label :"自己紹介" %></td>
           <td><%= f.text_field :introduction %></td>
           </tr>
         </div>
@@ -44,8 +46,8 @@
         </div>
 
         <div class="field">
-         <td><%= f.submit"保存", class: "btn btn-success" %></td>
-         <td><%= link_to "退会する", users_unsubscribe_path(current_user) %></td>
+         <td><%= f.submit"保存", class: "btn btn-info" %></td>
+         <td><%= link_to "退会する", users_unsubscribe_path(current_user), class: "btn btn-secondary" %></td>
         </div>
 
        </table>

@@ -6,6 +6,10 @@ class Review < ApplicationRecord
   has_many :review_tags,dependent: :destroy
   has_many :tags,through: :review_tags
 
+  def favorited_by?(user)
+    favorites.where(user_id: user.id).exists?
+  end
+
   # バリデーション
   # validates :title, presence: true, length: { maximum: 20 }
   # validates :body, presence: true, length: { maximum: 200 }
@@ -31,5 +35,26 @@ class Review < ApplicationRecord
      福岡県:40,佐賀県:41,長崎県:42,熊本県:43,大分県:44,宮崎県:45,鹿児島県:46,
      沖縄県:47
    }
+
+   def save_tags(savereview_tags)
+    # 現在のユーザーの持っているskillを引っ張ってきている
+    current_tags = self.tags.pluck(:name) unless self.tags.nil?
+    # 今bookが持っているタグと今回保存されたものの差をすでにあるタグとする。古いタグは消す。
+    old_tags = current_tags - savereview_tags
+    # 今回保存されたものと現在の差を新しいタグとする。新しいタグは保存
+    new_tags = savereview_tags - current_tags
+
+    # Destroy old taggings:
+    old_tags.each do |old_name|
+      self.tags.delete Tag.find_by(name:old_name)
+    end
+
+    # Create new taggings:
+    new_tags.each do |new_name|
+      review_tag = Tag.find_or_create_by(name:new_name)
+      # 配列に保存
+      self.tags << review_tag
+    end
+   end
 
 end

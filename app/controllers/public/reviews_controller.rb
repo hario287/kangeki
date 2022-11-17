@@ -4,10 +4,9 @@ class Public::ReviewsController < ApplicationController
 
   def show
     @review = Review.find(params[:id])
-    @reviewnew = Review.new
-    @user = @review.user
-    @comment = ReviewComment.new
-    impressionist(@review, nil, :unique => [:ip_address])
+    # @user = @review.user
+    @review_comment = ReviewComment.new
+
   end
 
   def create
@@ -38,11 +37,6 @@ class Public::ReviewsController < ApplicationController
   end
 
   def edit
-    @review = Review.find(params[:id])
-    @review_tag = @review.review_tags.pluck(:tag_name).join(',')
-    unless @review.user == current_user
-      redirect_to reviews_path
-    end
   end
 
   def update
@@ -57,7 +51,6 @@ class Public::ReviewsController < ApplicationController
   end
 
   def destroy
-    @review = Review.find(params[:id])
     @review.destroy
     redirect_to reviews_path
   end
@@ -65,7 +58,7 @@ class Public::ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:title, :body, :rate)
+    params.require(:review).permit(:stage_prefecture, :stage_name, :group, :body, :rate)
   end
   def ensure_correct_user
     @review = Review.find(params[:id])

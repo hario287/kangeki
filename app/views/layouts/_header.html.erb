@@ -5,13 +5,14 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+
       <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
 
         <!--ユーザー用ヘッダー-->
-        <% if user_signed_in? %>
+        <% if user_signed_in? && current_user.name != "guestuser" %>
           <li>
-            <%=  link_to users_mypage_path,class: 'nav-link text-light' do %>
+            <%=  link_to users_my_page_path(current_user.id),class: 'nav-link text-light' do %>
               <i class="fas fa-user-circle"></i> マイページ
             <% end %>
           </li>
@@ -50,7 +51,7 @@
           </li>
 
         <!--ログイン前ヘッダー-->
-        <% else %>
+        <% elsif %>
           <li>
             <%= link_to about_path,class: 'nav-link text-light' do %>
               <i class="fas fa-hashtag"></i> kangekiとは
@@ -66,6 +67,26 @@
               <i class="fas fa-sign-in-alt"></i> ログイン
             <% end %>
           </li>
+          <li>
+            <%= link_to users_guest_sign_in_path, { method: "post", class: 'nav-link text-light' } do %>
+              <i class="fas fa-user-shield"></i> ゲストログイン
+            <% end %>
+          </li>
+
+          <!--ゲストログイン用ヘッダー-->
+          <% else user_signed_in? && current_user.name == "guestUser" %>
+            <li>
+              <%= link_to "マイページ", users_my_page_path(current_user.id), class: 'nav-link text-light' %>
+            </li>
+            <li>
+              <%= link_to '会員一覧', users_path, class: 'nav-link text-light' %>
+            </li>
+            <li>
+              <%= link_to "投稿一覧", foods_path, class: 'nav-link text-light' %>
+            </li>
+            <li>
+              <%= link_to "ログアウト", users_sign_out_path, method: :delete, class: 'nav-link text-light' %>
+            </li>
         <% end %>
         </ul>
       </div>
