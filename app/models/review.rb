@@ -1,7 +1,9 @@
 class Review < ApplicationRecord
-  has_one_attached :image
+  belongs_to :user
+  has_many :favorites, dependent: :destroy
+  has_many :review_comments, dependent: :destroy
 
-# 公演場所（都道府県）
+# 公演場所
   enum stage_prefecture:{
      "---":0,
      北海道:1,青森県:2,岩手県:3,宮城県:4,秋田県:5,山形県:6,福島県:7,
@@ -18,4 +20,9 @@ class Review < ApplicationRecord
    # タグのリレーション
   has_many :review_tag_relationships,dependent: :destroy
   has_many :tags,through: :review_tag_relationships
+
+  # レビュー評価
+  validates :rate, numericality: {
+    less_than_or_equal_to: 5,
+    greater_than_or_equal_to: 1}, presence: true
 end

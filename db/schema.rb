@@ -65,13 +65,6 @@ ActiveRecord::Schema.define(version: 2022_11_12_145755) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "post_category_relationships", force: :cascade do |t|
-    t.integer "post_id", null: false
-    t.integer "category_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "post_comments", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "post_id", null: false
@@ -82,6 +75,7 @@ ActiveRecord::Schema.define(version: 2022_11_12_145755) do
 
   create_table "posts", force: :cascade do |t|
     t.integer "user_id", null: false
+    t.integer "category_id", null: false
     t.string "title", null: false
     t.text "body", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -117,6 +111,7 @@ ActiveRecord::Schema.define(version: 2022_11_12_145755) do
     t.string "stage_name", null: false
     t.string "group", null: false
     t.text "body", null: false
+    t.float "rate", default: 0.0, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
