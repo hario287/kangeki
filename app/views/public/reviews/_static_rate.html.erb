@@ -1,15 +1,15 @@
 <div id="rate_<%= review.id %>"></div>
 <script>
 $(document).on('turbolinks:load', function() {
-    let raty_<%= book.id %> = document.querySelector('#rate_<%= book.id %>');
-    rate_<%= book.id %>.innerHTML = ""
-    let option_<%= book.id %> = {
+    let raty_<%= review.id %> = document.querySelector('#rate_<%= review.id %>');
+    rate_<%= review.id %>.innerHTML = ""
+    let option_<%= review.id %> = {
         starOn: "<%= asset_path('star-on.png') %>",
         starOff: "<%= asset_path('star-off.png') %>",
         starHalf: "<%= asset_path('star-half.png') %>",
-        score: "<%= book.rate %>",
+        score: "<%= review.rate %>",
         readOnly: true,
       };
-    raty(raty_<%= book.id %> ,option_<%= book.id %>);
+    raty(raty_<%= review.id %> ,option_<%= review.id %>);
 });
 </script>

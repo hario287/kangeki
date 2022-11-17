@@ -6,6 +6,10 @@ class Review < ApplicationRecord
   has_many :review_tags,dependent: :destroy
   has_many :tags,through: :review_tags
 
+  def favorited_by?(user)
+    favorites.where(user_id: user.id).exists?
+  end
+
   # バリデーション
   # validates :title, presence: true, length: { maximum: 20 }
   # validates :body, presence: true, length: { maximum: 200 }
