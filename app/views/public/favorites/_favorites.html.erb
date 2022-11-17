@@ -1,0 +1,12 @@
+<% if post.favorited_by?(current_user) %>
+ <!--いいねがクリックされている状態とされていない状態で表示を変える-->
+  <%= link_to post_favorites_path(post_id: post.id, ), method: :delete, remote: true do %>
+  <i class="fas fa-heart" aria-hidden="true" style="color: #9F002D;"></i>
+  <%= post.favorites.count %>
+  <% end %>
+<% else %>
+  <%= link_to post_favorites_path(post), method: :post, remote: true do %>
+  <i class="fas fa-heart" aria-hidden="true"></i>
+  <%= post.favorites.count %>
+  <% end %>
+<% end %>
