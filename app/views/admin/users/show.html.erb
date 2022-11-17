@@ -8,7 +8,7 @@
       </div>
 
       <table class="table table-borderless">
-        <tr><%= image_tag user.get_profile_image, size:'100x100' %></tr>
+        <tr><%= image_tag @user.get_profile_image(100,100), class: "rounded-circle" %></tr>
       <tr>
         <td>ユーザーID</td>
         <td><%= @user.id %></td>
@@ -38,8 +38,8 @@
         <tfoot>
           <tr>
             <td></td>
-            <td><%= link_to "編集する", edit_admin_user_path,class: "btn btn-success" %></td>
-            <td><%= link_to "投稿一覧を見る",,class: "btn btn-primary" %></td>
+            <td><%= link_to "編集する", edit_admin_user_path,class: "btn btn-info" %></td>
+            <td><%= link_to "投稿一覧を見る",admin_user_posts_path,class: "btn btn-info" %></td>
           </tr>
         </tfoot>
     </table>

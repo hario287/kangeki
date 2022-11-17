@@ -22,7 +22,7 @@ class Admin::CategoriesController < ApplicationController
   end
 
   private
-  def genre_params
+  def category_params
     params.require(:category).permit(:category_name)
   end
 end

@@ -9,7 +9,7 @@
 
       <%= form_with model: @user, url: admin_user_path(@user), local:true, method: :patch do |f| %>
       <table class="table table-borderless table-sm">
-        <tr><%= image_tag user.get_profile_image, size:'100x100' %></tr>
+        <tr><%= image_tag @user.get_profile_image(100,100), class: "rounded-circle" %></tr>
         <div class="field">
           <tr>
           <td><%= f.label :"会員番号" %></td>
@@ -50,7 +50,7 @@
         </div>
       <div class="actions">
         <tr>
-        <td><br><%= f.submit '変更を保持', class: 'btn btn-success' %></td></tr>
+        <td><br><%= f.submit '変更を保存', class: 'btn btn-info' %></td></tr>
       </div>
     <% end %>
   </table>

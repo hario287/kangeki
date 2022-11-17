@@ -19,7 +19,7 @@
     <%= f.label :"カテゴリー" %>
     </div>
     <div class="col-sm-6">
-    <%= f.collection_select :category_id, Category.all, :id, :name, {prompt: '--選択してください--'}, class: 'form-control category' %>
+    <%= f.collection_select :category_id, Category.all, :id, :category_name, {prompt: '--選択してください--'}, class: 'form-control category' %>
     </div>
   </div>
 
