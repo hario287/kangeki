@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
- root 'public/homes#top'
-
 # ユーザー用
 # URL /users/sign_in ...
 devise_for :users,skip: [:passwords], controllers: {
@@ -20,17 +18,20 @@ devise_scope :user do
   post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
 end
 
-#管理者側
-namespace :admin do
-  resources :users, only:[:index, :show, :edit, :update]
-  resources :user_posts, only:[:index, :show, :edit, :destroy]
-  resources :user_reviews, only:[:index, :show, :edit, :destroy]
-  resources :categories, only:[:index, :create, :edit, :update]
-end
-
 #ユーザー側
 scope module: :public do
+  root 'homes#top'
   get 'about' => "homes#about", as: 'about'
+    # resources :users, only:[:index, :show, :edit, :update] do
+  get 'users/my_page' => 'users#show'
+  get 'users/information/edit' => 'users#edit'
+  patch 'users/information' => 'users#update'
+  get 'favorites' => 'users#favorites', as: 'favorites'
+
+  resource :relationships, only: [:create, :destroy]
+    get 'followings' => 'relationships#followings', as: 'followings'
+    get 'followers' => 'relationships#followers', as: 'followers'
+
   resources :posts do
     resources :post_comments, only: [:new, :create, :destroy]
   end
@@ -40,17 +41,19 @@ scope module: :public do
     resource :favorites, only: [:create, :destroy]
   end
 
-  resources :users, only:[:index, :show, :edit, :update] do
-    get 'history' => 'users#history', as: 'history'
-    get 'favorites' => 'users#favorites', as: 'favorites'
-    resource :relationships, only: [:create, :destroy]
-    get 'followings' => 'relationships#followings', as: 'followings'
-    get 'followers' => 'relationships#followers', as: 'followers'
-  end
-
 # 退会機能
   get "users/unsubscribe" => "users#unsubscribe"
   patch "users/withdraw" => "users#withdraw"
 
  end
+
+#管理者側
+namespace :admin do
+  root 'homes#top'
+  resources :users, only:[:index, :show, :edit, :update]
+  resources :user_posts, only:[:index, :show, :destroy]
+  resources :user_reviews, only:[:index, :show, :destroy]
+  resources :categories, only:[:index, :create, :edit, :update]
+end
+
 end

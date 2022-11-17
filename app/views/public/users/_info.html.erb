@@ -29,7 +29,7 @@
         <% if user == current_user %>
           <div class=" col-md">
             <i class="fas fa-user-cog" style="color: #9C8D65;"></i>
-            <%= link_to "プロフィール編集", edit_user_path(user), class: "btn btn-outline-secondary btn-block edit_user_#{user.id}" %>
+            <%= link_to "プロフィール編集", users_information_edit_path(user), class: "btn btn-outline-secondary btn-block edit_user_#{user.id}" %>
           </div>
         <% end %>
     </div>

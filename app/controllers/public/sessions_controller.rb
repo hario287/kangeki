@@ -17,13 +17,11 @@ protected
 # 退会しているかを判断するメソッド
 # ユーザーの論理削除
 def user_state
-  @user = Userr.find_by(email: params[:user][:email])
+  @user = User.find_by(email: params[:user][:email])
   return if !@user
   if @user.valid_password?(params[:user][:password]) && (@user.is_deleted == true)
     flash[:notice] = "退会済みです。再度ご登録をお願いします。"
     redirect_to new_user_registration_path
-  else
-     flash[:notice] = "項目を入力してください"
   end
 end
 end

@@ -3,7 +3,7 @@ class Public::UsersController < ApplicationController
   before_action :ensure_guest_user, only: [:edit]
 
   def show
-    @user = User.find(params[:id])
+    @user = current_user
     @reviews = @user.reviews.page(params[:page])
     @posts = @user.posts.page(params[:page])
   end
@@ -18,9 +18,9 @@ class Public::UsersController < ApplicationController
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = current_user
     if @user.update(user_params)
-      redirect_to user_path(@user), notice: "変更しました。"
+      redirect_to users_my_page_path, notice: "変更しました。"
     else
       render "edit"
     end
