@@ -1,2 +1,47 @@
-<h1>Public::Reviews#show</h1>
-<p>Find me in app/views/public/reviews/show.html.erb</p>
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-3'>
+      <h2>User info</h2>
+      <%= render 'users/info', user: @review.user %>
+      <h2 class="mt-3">New Review</h2>
+      <%= render 'form', review: Review.new %>
+    </div>
+    <div class='col-md-8 offset-md-1'>
+  		<h2>Book detail</h2>
+  		<table class='table'>
+  		  <tr>
+          <td><%= link_to(@review.user) do %>
+            <%= image_tag @review.user.get_profile_image, size:"100x100" %><br>
+            <%= @review.user.name %>
+            <% end %>
+          </td>
+          <td><%= link_to @review.title, @review %></td>
+          <td><%= @review.body %></td>
+          <td>
+            <% @review.tags.each do |tag| %>
+              <li style="list-style: none;"><%= link_to tag.name, search_path(content: tag.name, model:"tag", method: "perfect") %></li>
+            <% end %>
+          </td>
+          <td class=<%= "favorite-" + @review.id.to_s %> >
+            <%= render "favorites/btn", review: @review %>
+          </td>
+          <td class="review-comments-counter">
+            <%= render "review_comments/counter", review: @review %>
+          </td>
+          <td><%= render "static_rate", review: @review %></td>
+          <% if @review.user == current_user %>
+            <td><%= link_to 'Edit', edit_review_path(@review), class: "btn btn-sm btn-success edit_review_#{@review.id}" %></td>
+            <td><%= link_to 'Destroy', @review, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_review_#{@review.id}" %></td>
+          <% end %>
+        </tr>
+      </table>
+
+      <div class="review-comments-index">
+        <%= render "review_comments/index", review: @review %>
+      </div>
+
+      <%= render "review_comments/form", review: @review, review_comment: @review_comment %>
+
+    </div>
+  </div>
+</div>

@@ -2,11 +2,6 @@ Rails.application.routes.draw do
 
  root 'public/homes#top'
 
-#ゲストユーザー用
-devise_scope :user do
-  post 'users_guest_sign_in', to: 'users/sessions#guest_sign_in'
-end
-
 # ユーザー用
 # URL /users/sign_in ...
 devise_for :users,skip: [:passwords], controllers: {
@@ -20,6 +15,11 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: "admin/sessions"
 }
 
+#ゲストユーザー用
+devise_scope :user do
+  post 'users/guest_sign_in', to: 'public/sessions#guest_sign_in'
+end
+
 #管理者側
 namespace :admin do
   resources :users, only:[:index, :show, :edit, :update]
@@ -31,19 +31,26 @@ end
 #ユーザー側
 scope module: :public do
   get 'about' => "homes#about", as: 'about'
-  resources :posts, only: [:index,:show,:edit,:create,:destroy,:update] do
-    resources :post_comments, only: [:create, :destroy]
+  resources :posts do
+    resources :post_comments, only: [:new, :create, :destroy]
   end
-  resources :reviews,only: [:index,:show,:edit,:create,:destroy,:update] do
-    resources :review_comments, only: [:create, :destroy]
+
+  resources :reviews do
+    resources :review_comments, only: [:new, :create, :destroy]
     resource :favorites, only: [:create, :destroy]
   end
 
-  get "/users/mypage" => "users#show"
-  get "users/information/edit" => "users#edit"
-  patch "users/information" => "users#update"
+  resources :users, only:[:index, :show, :edit, :update] do
+    get 'history' => 'users#history', as: 'history'
+    get 'favorites' => 'users#favorites', as: 'favorites'
+    resource :relationships, only: [:create, :destroy]
+    get 'followings' => 'relationships#followings', as: 'followings'
+    get 'followers' => 'relationships#followers', as: 'followers'
+  end
 
+# 退会機能
   get "users/unsubscribe" => "users#unsubscribe"
   patch "users/withdraw" => "users#withdraw"
-  end
+
+ end
 end
