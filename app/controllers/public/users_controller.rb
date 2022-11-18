@@ -27,13 +27,13 @@ class Public::UsersController < ApplicationController
   end
 
   def unsubscribe
-    @user = User.find(params[:id])
+    @user = current_user
   end
 
   #退会処理
   def withdraw
-    @user = User.find(params[:id])
-    @user.update(is_deleted: false)
+    @user = current_user
+    @user.update(is_deleted: true)
     reset_session
     flash[:notice] = "退会処理を実行いたしました。"
     redirect_to root_path
@@ -55,7 +55,7 @@ class Public::UsersController < ApplicationController
   def ensure_correct_user
     @user = User.find(params[:id])
     unless @user == current_user
-      redirect_to user_path(current_user)
+      redirect_to users_my_page_path(current_user)
     end
   end
 
