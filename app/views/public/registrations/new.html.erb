@@ -1,38 +1,36 @@
 <div class="container">
-  <div class="row text-center">
-    <div class="col-7 col-md-3 mx-auto">
-      <h2 class="md-3 pt-5"><i class="fas fa-user-check" style="color: #9C8D65;"></i> 新規登録</h2>
+  <div class="row no-gutters">
+    <div class="col-md-5 col-sm-10 mx-2 mx-sm-auto text-center rounded px-5 my-5">
+      <h3 class="text-dark py-2 mb-0"><i class="fas fa-user-check" style="color: #9C8D65;"></i> 新規登録</h3>
+
         <%= form_with model: @user, url: user_registration_path do |f| %></br>
-
           <div class="field">
-            <%= f.label :name %></br>
-            <%= f.text_field :name, placeholder:"Name" %>
+            <%= f.label :"ユーザーネーム" %></br>
+            <%= f.text_field :name, placeholder:"ユーザーネームを入力", size: "30" %>
           </div>
           <p>
           <div class="field">
-            <%= f.label :email %></br>
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"Email" %>
+            <%= f.label :"メールアドレス" %></br>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"メールアドレスを入力", size: "30" %>
           </div>
           <p>
           <div class="field">
-            <%= f.label :password %>
+            <%= f.label :"パスワード" %>
             <% if @minimum_password_length %>
-            <em>(<%= @minimum_password_length %> 字以上)</em>
+            <em>(<%= @minimum_password_length %> 字以上)</em></br>
             <% end %>
-            <%= f.password_field :password, autocomplete: "new-password", placeholder:"Password(6文字以上)" %>
+            <%= f.password_field :password, autocomplete: "new-password", placeholder:"6文字以上で入力", size: "30" %>
           </div>
 
           <div class="field">
-            <%= f.label :password_confirmation %>
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder:"Password(確認)" %>
+            <%= f.label :"パスワード(確認)" %><br>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder:"6文字以上で入力", size: "30" %>
           </div>
-          </br>
-          <div class="col-10 mx-auto">
-            <%= f.submit "Sign Up", class: "btn btn-info btn-sm btn-block mb-3" %>
+          <br>
+          <div class="col-7 mx-auto">
+            <%= f.submit "登録する", class: "btn btn-info btn-block" %>
           </div>
         <% end %>
-
-        <%= render "public/shared/links" %>
     </div>
   </div>
 </div>
