@@ -2,16 +2,14 @@
   <%= render 'layouts/errors', obj: @post %>
   <div class='row'>
     <div class='col-md-3'>
+      <h2>Topics</h2>
 
-      <h2>User info</h2>
-      <%= render 'public/users/info', user: current_user %>
+    <br>
+    <h2 class="mt-3">New book</h2>
+     <%= link_to "新しく投稿する", new_post_path , class: "btn btn-info mr-5" %>
     </div>
 
-    <div class='col-md-8 offset-md-1'>
-     <%= render 'form', post: @post %></td>
-    </div>
-
-    <div class='col-12 offset'>
+    <div class='col-9 offset'>
       </br>
       <h2><strong>談話室</strong></h2>
       <span>あああ</span>

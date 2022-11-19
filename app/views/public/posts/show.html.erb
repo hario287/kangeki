@@ -1,2 +1,49 @@
-<h1>Public::Posts#show</h1>
-<p>Find me in app/views/public/posts/show.html.erb</p>
+<div class='container'>
+  <div class="row no-gutters">
+    <div class="col-9">
+      <div class="card mt-3">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-2 text-center">
+            <%= image_tag @post.user.get_profile_image(50,50), class: "rounded-circle" %>
+             </div>
+             <div class="col-9">
+              <i class="far fa-user" style="color: #9C8D65;"></i> <%= @post.user.name %>さん<br>
+              <i class="far fa-calendar" style="color: #9C8D65;"></i> <%= @post.created_at.strftime('%Y年%m月%d日') %>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <% if @post.post_image.attached? %>
+            <%= image_tag @post.post_image, width: '25%', height: '25%', class: "card-img-top" %>
+          <% end %>
+          <h2 class="card-title"><%= @post.title %></h2>
+          <h6 class="card-subtitle mb-2 text-muted">トピック:
+            <%= @post.topic.topic_name %>
+          </h6>
+          <h5 class="card-text"><%= @post.body %></h5>
+          <h6 class="favorite_buttons_<%= @post.id %>">
+            <!--< %= render "public/favorites/favorite", post: @post %>-->
+          </h6>
+          <h6 class="comment_count">
+            <%= "コメント" + @post.post_comments.count.to_s + "件" %>
+          </h6>
+        </div>
+      </div>
+      <% if @post.user == current_user %>
+      <%= link_to "投稿を編集", edit_post_path(@post), class: "btn btn-outline-info btn-sm" %>
+      <%= link_to "投稿を削除", post_path(@post), method: :delete, remote: true, data: { confirm: "本当に削除してもよろしいですか？" }, class: 'btn btn-outline-secondary btn-sm' %>
+      <% end %>
+  </div>
+  </div>
+
+  <div class="comment_area">
+    <%= render "public/post_comments/index", post: @post %></div><br>
+  <div class="new_comment">
+    <%= render "public/post_comments/form", post: @post, post_comment: @post_comment %>
+  </div>
+
+  <div class='col text-right'>
+   <%= link_to "投稿一覧へ戻る", posts_path %>
+  </div>
+</div>

@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :user
   has_many :post_comments, dependent: :destroy
-  belongs_to :category
+  belongs_to :topic
 
   # validates :title,presence: true, length: { maximum: 30 }
   # validates :body,presence: true
