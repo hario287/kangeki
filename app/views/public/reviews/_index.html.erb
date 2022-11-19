@@ -1,10 +1,10 @@
 <table class='table table-hover table-inverse'>
   <thead>
     <tr>
-      <th></th>
+      <th>ユーザー</th>
       <th>公演名</th>
-      <th>感想</th>
       <th>タグ</th>
+      <th>評価</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,12 +16,12 @@
           <% end %>
         </td>
         <td><%= link_to review.stage_name,review, class: "review_#{review.id}" %></td>
-        <td><%= review.body %></td>
         <td>
           <% review.tags.each do |tag| %>
             <li style="list-style: none;"><%= link_to tag.name, search_path(content: tag.name, model:"tag", method: "perfect") %></li>
           <% end %>
         </td>
+
         <!--<td class=< %= "favorite-" + review.id.to_s %> >-->
         <!--    < %= render "favorites/btn", review: review %>-->
         <!--</td>-->

@@ -41,16 +41,16 @@
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-12">
-      <div class="comment_area">
-      <%= render "public/post_comments/index", post: @post %></div><br>
-      <div class="new_comment">
-      <%= render "public/post_comments/form", post: @post, post_comment: @post_comment %>
+    <div class="row">
+      <div class="col-12">
+       <%= render "public/post_comments/index", post: @post %>
       </div>
+      <div class="col-8">
+       <%= render "public/post_comments/form", post: @post, post_comment: @post_comment %>
+
+       <%= link_to "投稿一覧へ戻る", posts_path, style: "color:#345362;" %>
+      </div>
+     </div>
     </div>
-    <br>
-  <div class='col-12 text-right'>
-   <%= link_to "投稿一覧へ戻る", posts_path, style: "color:#345362;" %>
   </div>
 </div>
