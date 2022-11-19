@@ -1,2 +1,21 @@
-<h1>Public::PostComments#index</h1>
-<p>Find me in app/views/public/post_comments/index.html.erb</p>
+<div class="card mt-3">
+  <div class="row">
+    <div class="col">
+      <div class="card-body">
+      <% post.post_comments.each do |post_comment| %>
+        <%= link_to users_my_page_path(post_comment.user.id) do %>
+        <p class="p-3"><%= image_tag post_comment.user.get_profile_image(40, 40), class: "rounded-circle" %>
+          <%= post_comment.user.name %>
+          <% end %>
+          <%= post_comment.created_at.strftime('%Y年%m月%d日') %></p>
+        <p class="card-text"><%= post_comment.comment %></p>
+
+        <% if post_comment.user == current_user %>
+          <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, remote: true, data: { confirm: '本当に削除してもよろしいですか？' }, class: 'btn btn-outline-secondary' %>
+        <% end %>
+
+      <% end %>
+   </div>
+  </div>
+ </div>
+</div>
