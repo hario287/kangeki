@@ -25,7 +25,10 @@ class Public::ReviewsController < ApplicationController
   end
 
   def index
-    @reviews = Review.page(params[:page]).per(10)
+    @reviews = Review.page(params[:page])
+    @reviews = Review.all
+    @user = current_user
+    @review = Review.new
     @tag_list = Tag.all
   end
 
