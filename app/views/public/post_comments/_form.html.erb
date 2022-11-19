@@ -2,7 +2,7 @@
  <div class="row no-gutters">
    <div class="col-10 ml-auto">
      <div class="comment-box">
-       <h5 class="text-dark font-weight-bold"><i class="fas fa-comment-dots" style="color: #9C8D65;"></i><font color="#345362"> 返信・回答フォーム</h5></font>
+       <h5 class="font-weight-bold"><i class="fas fa-comment-dots" style="color: #9C8D65;"></i><font color="#345362"> 返信・回答フォーム</h5></font>
          <div class="form-body">
            <%= form_with model: [post, post_comment], method: :post do |f| %>
            <%= f.hidden_field :post_id, value: post.id%>
