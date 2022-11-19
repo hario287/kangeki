@@ -26,12 +26,13 @@
           </h6>
           <p class="card-text">団体： <%= @review.group %></p>
           <p class="card-text">感想・レビュー： <%= @review.body %></p>
-          <h6 class="favorite_buttons_<%= @review.id %>">
-            <!--< %= render "public/favorites/favorite", post: @post %>-->
-          </h6>
-          <h6 class="comment_count">
+
+          <div id="favorite_buttons_<%= @review.id %>">
+            <%= render 'public/favorites/favorite', review: @review %>
+          </div>
+          <p class="comment_count">
             <%= "コメント" + @review.review_comments.count.to_s + "件" %>
-          </h6>
+          </p>
 
       <div class="row">
         <div class="col-12">

@@ -26,8 +26,12 @@ class Public::PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    @user = User.find(@post.user.id)
     # @user = User.find_by(name: 'guestUser')
     @post_comment = PostComment.new
+    unless ViewCount.find_by(user_id: current_user.id, post_id: @post.id)
+      current_user.view_counts.create(post_id: @post.id)
+    end
   end
 
   def edit
