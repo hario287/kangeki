@@ -4,30 +4,51 @@
       <th>ユーザー</th>
       <th>公演名</th>
       <th>タグ</th>
-      <th>評価</th>
+      <th>満足度</th>
       <th colspan="3"></th>
     </tr>
   </thead>
   <tbody>
     <% reviews.each do |review| %>
       <tr>
-        <td><%= link_to review_path(review.user) do %>
-          <%= image_tag review.user.get_profile_image(50,50) %>
-          <% end %>
-        </td>
-        <td><%= link_to review.stage_name,review, class: "review_#{review.id}" %></td>
         <td>
-          <% review.tags.each do |tag| %>
-            <li style="list-style: none;"><%= link_to tag.name, search_path(content: tag.name, model:"tag", method: "perfect") %></li>
+          <%= link_to review_path(review.user) do %>
+            <%= image_tag review.user.get_profile_image(50,50) %>
           <% end %>
         </td>
+
+        <td><%= link_to review.stage_name,review_path(review.id) %></td>
+
+        <td class="card-subtitle mb-2 text-muted">タグ:
+          <% review.tags.each do |tag| %>
+            <%= tag.name %>
+          <% end %></td>
+        <!--  < % review.tags.each do |tag| %>-->
+        <!--    <li style="list-style: none;">< %= link_to tag.name, search_path(content: tag.name, model:"tag", method: "perfect") %></li>-->
+        <!--  < % end %>-->
+        <!--</td>-->
 
         <!--<td class=< %= "favorite-" + review.id.to_s %> >-->
         <!--    < %= render "favorites/btn", review: review %>-->
         <!--</td>-->
         <!--<td>< s%= render "review_comments/counter", review: review %></td>-->
-        <td><%= render "public/reviews/static_rate", review: review %></td>
+
+        <td><%= review.rate %>
+        <div id="rate<%= review.id%>"></div></td>
+        <script>
+          $('#rate<%= review.id%>').raty({
+            size      : 36,
+            starOff   : '<%= asset_path('star-off.png') %>',
+            starOn    : '<%= asset_path('star-on.png') %>',
+            half      : false,
+            readOnly: true,
+            score: <%= review.rate %>,
+          });
+        </script>
+
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<%= render "layouts/raty" %>
