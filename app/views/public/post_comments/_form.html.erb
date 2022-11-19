@@ -1,1 +1,15 @@
-a
+<div class="comment-box">
+  <h5 class="font-weight-bold"><i class="fas fa-comment-dots" style="color: #9C8D65;"></i><font color="#345362"> コメントフォーム</h5></font>
+    <div class="form-body">
+      <%= form_with model: [post, post_comment], method: :post do |f| %>
+      <%= f.hidden_field :post_id, value: post.id%>
+      <%= f.text_area :comment, class:"form-control", rows: '5', placeholder: "ここに入力" %>
+      <div class="text-right">
+      <%= f.submit "送信する", class:"btn btn-info btn-right mt-4" %>
+      </di>
+    </div>
+      <% end %>
+    </div>
+  </div>
+ </div>
+</div>
