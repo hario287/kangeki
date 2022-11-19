@@ -19,8 +19,9 @@
           <% end %>
           <h2 class="card-title">公演： <font color="#345362"><%= @review.stage_name %></font></h2>
           <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-comments" style="color: #9C8D65;"></i>
-            <% @review.tags.each do |tag| %>
-              <li style="list-style: none;"><%= link_to tag.name, search_path(content: tag.name, model:"tag", method: "perfect") %></li>
+            <% @review_tags.each do |tag| %>
+            <%=tag.name%><%="(#{tag.reviews.count})" %>
+              <!--<li style="list-style: none;">< %= link_to tag.name, search_path(content: tag.name, model:"tag", method: "perfect") %></li>-->
             <% end %>
           </h6>
           <p class="card-text">団体： <%= @review.group %></p>
