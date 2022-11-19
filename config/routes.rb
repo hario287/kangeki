@@ -49,11 +49,10 @@ scope module: :public do
 
 #管理者側
 namespace :admin do
-  root 'homes#top'
   resources :users, only:[:index, :show, :edit, :update]
   resources :user_posts, only:[:index, :show, :destroy]
   resources :user_reviews, only:[:index, :show, :destroy]
-  resources :categories, only:[:index, :create, :edit, :update]
+  resources :topics, only:[:index, :create, :edit, :update]
 end
 
 end

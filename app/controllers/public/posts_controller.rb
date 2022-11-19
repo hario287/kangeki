@@ -2,6 +2,10 @@ class Public::PostsController < ApplicationController
   before_action :authenticate_user!
   before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
+  def new
+    @post = Post.new
+  end
+
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
@@ -54,7 +58,7 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:title, :body, :post_image, :category_id)
+    params.require(:post).permit(:title, :body, :post_image, :topic_id)
   end
 
 end
