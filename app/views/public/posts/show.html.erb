@@ -15,26 +15,31 @@
         </div>
         <div class="card-body">
           <% if @post.post_image.attached? %>
-            <%= image_tag @post.post_image, width: '25%', height: '25%', class: "card-img-top" %>
+            <%= image_tag @post.post_image, class: "card-img-top" %>
           <% end %>
-          <h2 class="card-title"><%= @post.title %></h2>
-          <h6 class="card-subtitle mb-2 text-muted">トピック:
+          <h1 class="card-title"><%= @post.title %></h1>
+          <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-comments" style="color: #9C8D65;"></i>
             <%= @post.topic.topic_name %>
           </h6>
-          <h5 class="card-text"><%= @post.body %></h5>
+          <p class="card-text"><%= @post.body %></p>
           <h6 class="favorite_buttons_<%= @post.id %>">
             <!--< %= render "public/favorites/favorite", post: @post %>-->
           </h6>
           <h6 class="comment_count">
             <%= "コメント" + @post.post_comments.count.to_s + "件" %>
           </h6>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="text-right">
+          <% if @post.user == current_user %>
+          <%= link_to "投稿を編集", edit_post_path(@post), class: "btn btn-outline-info" %>
+          <%= link_to "投稿を削除", post_path(@post), method: :delete, remote: true, data: { confirm: "本当に削除してもよろしいですか？" }, class: "btn btn-outline-secondary" %>
+          <% end %>
+          </div>
         </div>
       </div>
-      <% if @post.user == current_user %>
-      <%= link_to "投稿を編集", edit_post_path(@post), class: "btn btn-outline-info btn-sm" %>
-      <%= link_to "投稿を削除", post_path(@post), method: :delete, remote: true, data: { confirm: "本当に削除してもよろしいですか？" }, class: 'btn btn-outline-secondary btn-sm' %>
-      <% end %>
-  </div>
+    </div>
   </div>
 
   <div class="comment_area">
@@ -44,6 +49,6 @@
   </div>
 
   <div class='col text-right'>
-   <%= link_to "投稿一覧へ戻る", posts_path %>
+   <%= link_to "投稿一覧へ戻る", posts_path, style: "color:#345362;" %>
   </div>
 </div>
