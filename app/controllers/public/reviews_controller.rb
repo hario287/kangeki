@@ -1,10 +1,12 @@
 class Public::ReviewsController < ApplicationController
   before_action :authenticate_user!
-  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
+
+  def new
+    @review = Review.new
+  end
 
   def show
     @review = Review.find(params[:id])
-    # @user = @review.user
     @review_comment = ReviewComment.new
 
   end
@@ -15,7 +17,7 @@ class Public::ReviewsController < ApplicationController
     tag_list = params[:review][:tag_name].split(',')
     if @review.save
       @review.save_tag(tag_list)
-      redirect_to review_path(@review), notice: "投稿しました。"
+      redirect_to review_path(@review.id), notice: "投稿しました。"
     else
       @reviews = Review.all
       render 'index'
@@ -33,10 +35,11 @@ class Public::ReviewsController < ApplicationController
     else
       @reviews = Review.all.order(params[:sort])
     end
-    @review = Review.new
+       @review = Review.new
   end
 
   def edit
+    @review = Review.find(params[:id])
   end
 
   def update
@@ -44,13 +47,14 @@ class Public::ReviewsController < ApplicationController
     tag_list = params[:review][:tag_name].split(',')
     if @review.update(review_params)
       @review.save_tag(tag_list)
-      redirect_to review_path(@review), notice: "投稿を編集しました。"
+      redirect_to review_path(@review.id), notice: "投稿を編集しました。"
     else
       render "edit"
     end
   end
 
   def destroy
+    @review = Review.find(params[:id])
     @review.destroy
     redirect_to reviews_path
   end
@@ -58,8 +62,9 @@ class Public::ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:stage_prefecture, :stage_name, :group, :body, :rate)
+    params.require(:review).permit(:stage_prefecture, :stage_name, :group, :body, :rate, tag_ids:[])
   end
+
   def ensure_correct_user
     @review = Review.find(params[:id])
     unless @review.user == current_user

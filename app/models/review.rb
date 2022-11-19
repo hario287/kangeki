@@ -6,6 +6,8 @@ class Review < ApplicationRecord
   has_many :review_tags,dependent: :destroy
   has_many :tags,through: :review_tags
 
+  has_one_attached :review_image
+
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
   end
