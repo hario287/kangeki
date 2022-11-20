@@ -17,18 +17,14 @@
           </div>
         </div>
         <div class="card-body">
-          <% if @post.post_image.attached? %>
-            <%= image_tag @post.post_image, class: "card-img-top" %>
-          <% end %>
           <h2 class="card-title"><font color="#345362"><%= @post.title %></font></h2>
           <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-comments" style="color: #9C8D65;"></i>
             <%= @post.topic.topic_name %>
           </h6>
-          <p class="card-text"><%= @post.body %></p>
-          <h6 class="favorite_buttons_<%= @post.id %>">
-          </h6>
-          <h6 class="comment_count">
-            <%= "コメント" + @post.post_comments.count.to_s + "件" %>
+          <% if @post.post_image.attached? %>
+            <%= image_tag @post.post_image, class: "card-img-top" %>
+          <% end %>
+          <p class="card-text mt-3"><%= @post.body %></p>
           </h6>
 
       <div class="row">

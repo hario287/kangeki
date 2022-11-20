@@ -1,6 +1,9 @@
 <div class="card mt-3 mb-3">
   <div class="card-body">
     <h4 class="card-title font-weight-bold"><i class="fas fa-comment" style="color: #9C8D65;"></i><font color="#345362"> コメント</font></h4>
+      <h6 class="comment_count">
+        <%= "(" + post.post_comments.count.to_s + "件)" %>
+      </h6>
         <% post.post_comments.each do |post_comment| %>
           <%= image_tag post_comment.user.get_profile_image(40, 40), class: "rounded-circle" %>
           <i class="far fa-user" style="color: #9C8D65;"></i>

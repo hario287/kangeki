@@ -32,11 +32,11 @@ scope module: :public do
   end
 
   resources :posts do
-    resources :post_comments, only: [:new, :create, :destroy]
+    resources :post_comments, only: [:create, :destroy]
   end
 
   resources :reviews do
-    resources :review_comments, only: [:new, :create, :destroy]
+    resources :review_comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
   end
 
