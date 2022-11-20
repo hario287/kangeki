@@ -15,7 +15,7 @@ class Public::ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.user_id = current_user.id
     # 受け取った値を,で区切って配列にする
-    tag_list = params[:review][:name].split(',')
+    tag_list = params[:review][:tag_name].split(',')
     if @review.save
       @review.save_tag(tag_list)
       redirect_to review_path(@review), notice: "投稿しました。"

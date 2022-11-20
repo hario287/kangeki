@@ -21,9 +21,20 @@
           <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-comments" style="color: #9C8D65;"></i>
             <% @review_tags.each do |tag| %>
             <%=tag.name%><%="(#{tag.reviews.count})" %>
-              <!--<li style="list-style: none;">< %= link_to tag.name, search_path(content: tag.name, model:"tag", method: "perfect") %></li>-->
             <% end %>
           </h6>
+          <div id="rate<%= @review.id%>"></div>
+          <p class="card-text">満足度： <%= @review.rate %></p>
+          <script>
+          $('#rate<%= @review.id%>').raty({
+            size      : 36,
+            starOff   : '<%= asset_path('star-off.png') %>',
+            starOn    : '<%= asset_path('star-on.png') %>',
+            half      : false,
+            readOnly: true,
+            score: <%= @review.rate %>,
+          });
+          </script>
           <p class="card-text">団体： <%= @review.group %></p>
           <p class="card-text">感想・レビュー： <%= @review.body %></p>
 
