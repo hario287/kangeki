@@ -14,9 +14,10 @@
           </div>
         </div>
         <div class="card-body">
-          <% if @review.review_image.attached? %>
+          <h1><% if @review.review_image.attached? %>
             <%= image_tag @review.review_image, class: "card-img-top" %>
           <% end %>
+          </h1>
           <h2 class="card-title">公演： <font color="#345362"><%= @review.stage_name %></font></h2>
           <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-comments" style="color: #9C8D65;"></i>
             <% @review_tags.each do |tag| %>

@@ -7,6 +7,7 @@ class Public::ReviewsController < ApplicationController
 
   def show
     @review = Review.find(params[:id])
+    @user = User.find(@review.user.id)
     @review_comment = ReviewComment.new
     @review_tags = @review.tags
   end
@@ -15,7 +16,7 @@ class Public::ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.user_id = current_user.id
     # 受け取った値を,で区切って配列にする
-    tag_list = params[:review][:tag_name].split(',')
+    tag_list = params[:review][:name].split(',')
     if @review.save
       @review.save_tag(tag_list)
       redirect_to review_path(@review.id), notice: "投稿しました。"
@@ -59,7 +60,7 @@ class Public::ReviewsController < ApplicationController
   private
 
   def review_params
-    params.require(:review).permit(:stage_prefecture, :stage_name, :group, :body, :rate, tag_ids:[])
+    params.require(:review).permit(:stage_prefecture, :stage_name, :group, :body, :rate, :review_image, tag_id:[])
   end
 
   def ensure_correct_user

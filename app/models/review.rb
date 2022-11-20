@@ -16,7 +16,6 @@ class Review < ApplicationRecord
   validates :stage_name, presence: true, length: { maximum: 20 }
   validates :body, presence: true, length: { maximum: 500 }
   validates :stage_prefecture, presence: true
-  validates :tag_ids, presence: true
   validates :rate, presence: true
 
   # レビュー評価
