@@ -3,24 +3,25 @@
     <h4 class="card-title font-weight-bold"><i class="fas fa-comment" style="color: #9C8D65;"></i><font color="#345362"> コメント</font></h4>
         <% review.review_comments.each do |review_comment| %>
           <%= image_tag review_comment.user.get_profile_image(40, 40), class: "rounded-circle" %>
-          <%= link_to users_my_page_path(review_comment.user.id) do %>
-            <i class="far fa-user" style="color: #9C8D65;"></i> <%= review_comment.user.name %>
-          <% end %>
-            さんからのコメント </p>
+          <i class="far fa-user" style="color: #9C8D65;"></i>
+            <%= link_to user_path(review_comment.user.id) do %>
+              <%= review_comment.user.name %>
+            <% end %>さんからのコメント
+          <br>
           <p class="card-text"><%= review_comment.comment %></p>
-      <div class="row">
-        <div class="col-12">
-          <i class="far fa-calendar" style="color: #9C8D65;"></i> <%= review_comment.created_at.strftime('%Y年%m月%d日') %>
-          <div class="text-right">
-            <% if review_comment.user == current_user %>
-            <%= link_to "削除", review_review_comment_path(review_comment.review, review_comment), method: :delete, remote: true, data: { confirm: '本当に削除してもよろしいですか？' }, class: 'btn btn-sm btn-outline-secondary' %>
-            <% end %>
-          </div>
-        </div>
-      </div>
+            <div class="row">
+              <div class="col-12">
+                <i class="far fa-calendar" style="color: #9C8D65;"></i> <%= review_comment.created_at.strftime('%Y年%m月%d日') %>
+                <div class="text-right">
+                  <% if review_comment.user == current_user %>
+                  <%= link_to "削除", review_review_comment_path(review_comment.review, review_comment), method: :delete, remote: true, data: { confirm: '本当に削除してもよろしいですか？' }, class: 'btn btn-sm btn-outline-secondary' %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
         <% end %>
+      </div>
     </div>
    </div>
   </div>
- </div>
 </div>

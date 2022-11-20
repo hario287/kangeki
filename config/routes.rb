@@ -22,15 +22,14 @@ end
 scope module: :public do
   root 'homes#top'
   get 'about' => "homes#about", as: 'about'
-    # resources :users, only:[:index, :show, :edit, :update] do
-  get 'users/my_page' => 'users#show'
-  get 'users/information/edit' => 'users#edit'
-  patch 'users/information' => 'users#update'
-  get 'favorites' => 'users#favorites', as: 'favorites'
+  get "search" => "searches#search"
 
-  resource :relationships, only: [:create, :destroy]
-    get 'followings' => 'relationships#followings', as: 'followings'
-    get 'followers' => 'relationships#followers', as: 'followers'
+  resources :users, only:[:index, :show, :edit, :update] do
+    get 'favorites' => 'users#favorites', as: 'favorites'
+    resource :relationships, only: [:create, :destroy]
+      get 'followings' => 'relationships#followings', as: 'followings'
+      get 'followers' => 'relationships#followers', as: 'followers'
+  end
 
   resources :posts do
     resources :post_comments, only: [:new, :create, :destroy]
