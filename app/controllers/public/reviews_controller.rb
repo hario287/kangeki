@@ -18,8 +18,10 @@ class Public::ReviewsController < ApplicationController
     tag_list = params[:review][:tag_name].split(',')
     if @review.save
       @review.save_tag(tag_list)
-      redirect_to review_path(@review), notice: "投稿しました。"
+      redirect_to review_path(@review.id), notice: "投稿しました。"
     else
+      @user = current_user
+      @reviews = Review.all
       render 'index'
     end
   end

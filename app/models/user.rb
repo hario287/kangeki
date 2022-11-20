@@ -22,7 +22,7 @@ class User < ApplicationRecord
  #閲覧数
   has_many :view_counts, dependent: :destroy
 
-  # validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
+  validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
   # validates :introduction
 
   # ゲストユーザー

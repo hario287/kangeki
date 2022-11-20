@@ -4,9 +4,9 @@ class Post < ApplicationRecord
   belongs_to :topic
   has_many :view_counts, dependent: :destroy
 
-  # validates :title,presence: true, length: { maximum: 30 }
-  # validates :body,presence: true
-  # validates :category, presence: true
+  validates :title,presence: true, length: { maximum: 30 }
+  validates :body,presence: true
+  validates :topic, presence: true
 
   has_one_attached :post_image
 
