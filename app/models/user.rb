@@ -19,6 +19,9 @@ class User < ApplicationRecord
   has_many :reviews, dependent: :destroy
   has_many :review_comments, dependent: :destroy
 
+ #閲覧数
+  has_many :view_counts, dependent: :destroy
+
   # validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
   # validates :introduction
 

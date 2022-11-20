@@ -6,6 +6,8 @@ class Review < ApplicationRecord
   has_many :review_tags,dependent: :destroy
   has_many :tags,through: :review_tags
 
+  has_one_attached :review_image
+
   def favorited_by?(user)
     favorites.where(user_id: user.id).exists?
   end
@@ -16,10 +18,11 @@ class Review < ApplicationRecord
   # validates :area, presence: true
   # validates :tag_ids, presence: true
   # validates :rate, presence: true
-  # # レビュー評価
-  # validates :rate, numericality: {
-  # less_than_or_equal_to: 5,
-  # greater_than_or_equal_to: 1}, presence: true
+
+  # レビュー評価
+  validates :rate, numericality: {
+  less_than_or_equal_to: 5,
+  greater_than_or_equal_to: 1}, presence: true
 
 
   # 公演場所
@@ -36,24 +39,24 @@ class Review < ApplicationRecord
      沖縄県:47
    }
 
-   def save_tags(savereview_tags)
-    # 現在のユーザーの持っているskillを引っ張ってきている
+   def save_tag(sent_tags)
+   # タグが存在していれば、タグの名前を配列として全て取得
     current_tags = self.tags.pluck(:name) unless self.tags.nil?
-    # 今bookが持っているタグと今回保存されたものの差をすでにあるタグとする。古いタグは消す。
-    old_tags = current_tags - savereview_tags
-    # 今回保存されたものと現在の差を新しいタグとする。新しいタグは保存
-    new_tags = savereview_tags - current_tags
+    # 現在取得したタグから送られてきたタグを除いてoldtagとする
+    old_tags = current_tags - sent_tags
+    # 送信されてきたタグから現在存在するタグを除いたタグをnewとする
+    new_tags = sent_tags - current_tags
 
     # Destroy old taggings:
-    old_tags.each do |old_name|
-      self.tags.delete Tag.find_by(name:old_name)
+    old_tags.each do |old|
+      self.tags.delete Tag.find_by(name: old)
     end
 
     # Create new taggings:
-    new_tags.each do |new_name|
-      review_tag = Tag.find_or_create_by(name:new_name)
+    new_tags.each do |new|
+      new_review_tag = Tag.find_or_create_by(name: new)
       # 配列に保存
-      self.tags << review_tag
+      self.tags << new_review_tag
     end
    end
 

@@ -1,10 +1,53 @@
-<div class='container'>
-  <div class='row'>
-    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-  		<h1>Editing Book</h1>
-    	<%= render 'layouts/errors', obj: @review %>
-  		<%= render 'form', review: @review %>
-  		<%= link_to 'Show', @review, class: "book_#{@review.id}" %> |
-  		<%= link_to 'Back', reviews_path, class: "back" %>
+<div class="container">
+  <div class="row no-gutters">
+    <div class="col-md-7 col-sm-10 mx-2 mx-sm-auto px-0 my-3">
+      <h3 class="font-weight-bold p-3"><font color="#345362">投稿を編集する</font></h3>
+        <div class="form-body p-3">
+          <%= render "layouts/errors", obj: @review %>
+          <%= form_with model: @review do |f| %>
+
+          <div class="input-group mb-3 mt-4">
+            <%= f.label :"公演名　" %>
+            <%= f.text_field :stage_name, class: 'form-control review_stage_name' %>
+          </div>
+
+          <div class="input-group mb-3 mt-4">
+            <%= f.label :"画像　" %>
+            <%= f.file_field :review_image, accept: "image/*" %>
+          </div>
+
+          <div class="form-group mb-3 mt-4">
+            <%= f.label "タグつけ　" %>
+            <%= f.text_field :name,value: @tag_list,class:"form-control", placeholder:"タグ1,タグ2,...,タグn" %>
+          </div>
+
+          <div class="form-group mb-3 mt-4" id="rate">
+            <%= f.label :rate,"満足度　", class: 'star-title' %>
+            <%= f.hidden_field :rate, id: :review_rate %>
+          </div>
+          <%= render "rate", review: @review %>
+
+          <div class="form-group mb-3 mt-4">
+            <%= f.label "公演団体　" %>
+            <%= f.text_field :group %>
+          </div>
+
+          <div class="form-group mb-3 mt-4">
+            <%= f.label "公演場所　" %>
+            <%= f.select :stage_prefecture, Review.stage_prefectures.keys, {} %>
+          </div>
+
+          <div class="form-group mb-3 mt-4">
+            <%= f.label :"感想・レビュー　" %>
+            <%= f.text_area :body, class: 'form-control review_body', rows: "8" %>
+          </div>
+
+
+          <div class="form-group mb-3 mt-5">
+            <%= f.submit "変更", class: "btn btn-info btn-lg btn-block font-weight-bold" %>
+          </div>
+          <% end %>
+      </div>
+    </div>
   </div>
 </div>
