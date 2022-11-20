@@ -14,13 +14,13 @@ class Public::UsersController < ApplicationController
 
 
   def edit
-    @user = current_user
+    @user = User.find(params[:id])
   end
 
   def update
      @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to users_path, notice: "変更しました。"
+      redirect_to user_path(@user.id), notice: "変更しました。"
     else
       render "edit"
     end

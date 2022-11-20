@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <div class="container">
   <div class='row'>
-    <div class="col-sm-12 col-md-8 col-lg-8 px-5 px-sm-0 mx-auto">
+    <div class="col-sm-12 col-md-8 col-lg-8 px-5 px-sm-0 m-3 mx-auto">
       <h2>ユーザー情報編集</h2>
 
-    <%= form_with model:@user, url: user_path, method: :patch, local:true do |f| %>
+    <%= form_with model: @user, url: user_path, local:true do |f| %>
     <%= render 'layouts/errors', obj: @user %>
-      <table class="table table-borderless table-sm">
+      <table class="table table-borderless">
         <div class="form-group">
           <tr>
           <td><%= f.label :"プロフィール画像" %></td>
@@ -20,36 +20,37 @@
         <div class="field">
           <tr>
           <td><%= f.label :"ユーザーネーム" %></td>
-          <td><%= f.text_field :name %></td>
+          <td><%= f.text_field :name, class:"form-control" %></td>
           </tr>
         </div>
 
         <div class="field">
           <tr>
           <td><%= f.label :"自己紹介" %></td>
-          <td><%= f.text_field :introduction %></td>
+          <td><%= f.text_area :introduction, class:"form-control", rows: '5', placeholder: 'ここに入力' %></td>
           </tr>
         </div>
 
         <div class="field">
           <tr>
           <td><%= f.label :"地域" %></td>
-          <td><%= f.select :user_prefecture, User.user_prefectures.keys, {} %></td>
+          <td><%= f.select :user_prefecture, User.user_prefectures.keys, {}, class:"form-control" %></td>
           </tr>
         </div>
 
         <div class="field">
           <tr>
           <td><%= f.label :"メールアドレス" %></td>
-          <td><%= f.text_field :email %></td>
+          <td><%= f.text_field :email, class:"form-control" %></td>
           </tr>
         </div>
 
         <div class="field">
-         <td><%= f.submit"保存", class: "btn btn-info" %></td>
+         <td>
+           <%= f.submit "保存する", class: "btn btn-info" %>
+         </td>
          <td><%= link_to "退会する", users_unsubscribe_path(current_user), class: "btn btn-secondary" %></td>
         </div>
-
        </table>
       <% end %>
     </div>

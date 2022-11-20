@@ -24,7 +24,7 @@ scope module: :public do
   get 'about' => "homes#about", as: 'about'
   get "search" => "searches#search"
 
-  resources :users, only:[:index, :show, :edit, :update] do
+  resources :users do
     get 'favorites' => 'users#favorites', as: 'favorites'
     resource :relationships, only: [:create, :destroy]
       get 'followings' => 'relationships#followings', as: 'followings'
