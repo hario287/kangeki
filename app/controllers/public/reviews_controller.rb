@@ -57,6 +57,19 @@ class Public::ReviewsController < ApplicationController
     redirect_to reviews_path
   end
 
+  # キーワード検索
+  def search
+    @user = current_user
+    @review = Review.new
+    @tag_list = Tag.all
+    if params[:keyword].present?
+      @reviews = Review.where('body LIKE ?', "%#{params[:keyword]}%")
+      @keyword = params[:keyword]
+    else
+      @reviews = Review.all
+    end
+  end
+
   private
 
   def review_params
