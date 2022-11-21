@@ -1,16 +1,17 @@
 <div class='container px-5 px-sm-0 p-3'>
+  <%= render 'layouts/errors', obj: @post %>
   <div class='row'>
     <div class='col-md-3'>
-      <h3>トピック一覧</h3>
-
-    <br>
-     <%= link_to "新しく投稿する", new_post_path , class: "btn btn-info mr-5" %>
+      <%= render 'sidebar', posts: @posts %>
     </div>
 
-    <div class='col-9 offset'>
-      </br>
+    <div class='col-md-9 mt-3 offset'>
       <h2 class="font-weight-bold"><font color="#345362">談話室</font></h2>
       <span>あああ</span>
+      <% if params[:genre] == nil %>
+      <% else %>
+        <h4 class="d-inline-block"><%= @topic.topic_name %>一覧</h4>
+      <% end %>
       <%= render 'index', posts: @posts %>
     </div>
   </div>

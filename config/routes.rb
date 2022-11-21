@@ -22,7 +22,6 @@ end
 scope module: :public do
   root 'homes#top'
   get 'about' => "homes#about", as: 'about'
-  get "search" => "searches#search"
 
   resources :users do
     get 'favorites' => 'users#favorites', as: 'favorites'
@@ -33,11 +32,17 @@ scope module: :public do
 
   resources :posts do
     resources :post_comments, only: [:create, :destroy]
+    collection do
+      get 'search'
+    end
   end
 
   resources :reviews do
     resources :review_comments, only: [:create, :destroy]
     resource :favorites, only: [:create, :destroy]
+    collection do
+      get 'search'
+    end
   end
 
 # 退会機能
@@ -52,6 +57,7 @@ namespace :admin do
   resources :user_posts, only:[:index, :show, :destroy]
   resources :user_reviews, only:[:index, :show, :destroy]
   resources :topics, only:[:index, :create, :edit, :update]
+  # 検索
+  get "search" => "searches#search"
 end
-
 end

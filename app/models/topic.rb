@@ -1,4 +1,4 @@
 class Topic < ApplicationRecord
-  has_many :posts
+  has_one :posts
   validates :topic_name, uniqueness: true, presence: true
 end

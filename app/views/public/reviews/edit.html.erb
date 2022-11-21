@@ -17,8 +17,9 @@
           </div>
 
           <div class="form-group mb-3 mt-4">
-            <%= f.label "タグつけ　" %>
-            <%= f.text_field :name,value: @tag_list,class:"form-control", placeholder:"タグ1,タグ2,...,タグn" %>
+            <%= f.label "タグ　" %>
+            <%= f.text_field :name,value: @tag_list %>
+            *タグは(,)区切りで複数入力できます
           </div>
 
           <div class="form-group mb-3 mt-4" id="rate">

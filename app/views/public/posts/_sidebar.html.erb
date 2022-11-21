@@ -1,0 +1,10 @@
+<div class="topic mt-3 mb-4">
+  <h4 class="font-weight-bold"><i class="fas fa-comments" style="color: #9C8D65;"></i><font color="#345362"> トピック一覧</font></h4>
+  <p><%= link_to "すべて",posts_path, class: "text-reset" %></p>
+  < % topics.each do |topic| %>
+    < %= link_to topic.topic_name, posts_path(topic: topic.id) , class: "text-reset"%>
+  < % end %>
+
+</div>
+
+<p class="ml-4 mb-4"><%= link_to "新しく投稿する", new_post_path , class: "btn btn-info mr-5" %></p>
