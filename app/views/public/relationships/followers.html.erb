@@ -1,0 +1,13 @@
+<div class='container p-10'>
+  <div class='row'>
+    <div class="col-md-12 pt-3">
+      <h4><i class="fas fa-users" style="color: #9C8D65;"></i>
+      <strong>フォロワー</strong></h4>
+      <% if @users.exists? %>
+        <%= render 'public/users/index', users: @users %>
+       <% else %>
+        <p>ユーザーはいません</p>
+      <% end %>
+    </div>
+  </div>
+</div>

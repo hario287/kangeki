@@ -2,7 +2,6 @@
   <h5 class="font-weight-bold"><i class="fas fa-comment-dots" style="color: #9C8D65;"></i><font color="#345362"> コメントフォーム</h5></font>
     <div class="form-body">
       <%= form_with model: [review, review_comment], method: :post do |f| %>
-      <%= f.hidden_field :review_id, value: review.id%>
       <%= f.text_area :comment, class:"form-control", rows: '5', placeholder: "ここに入力" %>
       <div class="text-right">
       <%= f.submit "送信する", class:"btn btn-info btn-right mt-4" %>

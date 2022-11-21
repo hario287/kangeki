@@ -13,11 +13,10 @@ class Review < ApplicationRecord
   end
 
   # バリデーション
-  # validates :title, presence: true, length: { maximum: 20 }
-  # validates :body, presence: true, length: { maximum: 200 }
-  # validates :area, presence: true
-  # validates :tag_ids, presence: true
-  # validates :rate, presence: true
+  validates :stage_name, presence: true, length: { maximum: 20 }
+  validates :body, presence: true, length: { maximum: 500 }
+  validates :stage_prefecture, presence: true
+  validates :rate, presence: true
 
   # レビュー評価
   validates :rate, numericality: {

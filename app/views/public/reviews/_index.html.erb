@@ -14,7 +14,7 @@
       <tr>
         <td>
           <%= link_to review_path(review.user) do %>
-            <%= image_tag review.user.get_profile_image(50,50) %>
+            <%= image_tag review.user.get_profile_image(50,50), class: "rounded-circle" %>
           <% end %>
         </td>
 

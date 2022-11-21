@@ -3,7 +3,7 @@ class Public::UsersController < ApplicationController
   before_action :ensure_guest_user, only: [:edit]
 
   def show
-    @user = current_user
+    @user = User.find(params[:id])
     @reviews = @user.reviews.page(params[:page])
     @posts = @user.posts.page(params[:page])
   end
@@ -14,25 +14,25 @@ class Public::UsersController < ApplicationController
 
 
   def edit
-    @user = current_user
+    @user = User.find(params[:id])
   end
 
   def update
-    @user = current_user
+     @user = User.find(params[:id])
     if @user.update(user_params)
-      redirect_to users_my_page_path, notice: "変更しました。"
+      redirect_to user_path(@user.id), notice: "変更しました。"
     else
       render "edit"
     end
   end
 
   def unsubscribe
-    @user = current_user
+     @user = User.find(params[:id])
   end
 
   #退会処理
   def withdraw
-    @user = current_user
+    @user = @user = User.find(params[:id])
     @user.update(is_deleted: true)
     reset_session
     flash[:notice] = "退会処理を実行いたしました。"
@@ -52,16 +52,9 @@ class Public::UsersController < ApplicationController
     params.require(:user).permit(:name, :profile_image, :email, :user_prefecture, :introduction, :is_deleted,)
   end
 
-  def ensure_correct_user
-    @user = User.find(params[:id])
-    unless @user == current_user
-      redirect_to users_my_page_path(current_user)
-    end
-  end
-
   def ensure_guest_user
-    @user = current_user
-    if @user.name == "guestuser"
+    @user = User.find(params[:id])
+    if @user.name == "ゲストユーザー"
       redirect_to user_path(current_user) , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
     end
   end
