@@ -1,8 +1,7 @@
-<!--検索-->
+<% if admin_signed_in? %>
 <div class="form-group">
   <div class="search_form mr-3 text-right">
     <!--管理者用-->
-    <% if admin_signed_in? %>
       <%= form_with url: admin_search_path, local: true, method: :get do |f| %>
         <%= f.text_field :word, class: 'form-control' %>
         <%= f.select :range, options_for_select([['User'], ['Post'],['Review']]) %>
