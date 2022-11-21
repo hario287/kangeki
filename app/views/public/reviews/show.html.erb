@@ -19,7 +19,7 @@
         <div class="card-body">
           <h1>
             <% if @review.review_image.attached? %>
-              <%= image_tag @review.review_image,get_review_image(50,50), class: "card-img-top" %>
+              <%= image_tag @review.review_image, class: "card-img-top" %>
             <% end %>
           </h1>
           <h2 class="card-title">公演： <font color="#345362"><%= @review.stage_name %></font></h2>
