@@ -76,6 +76,9 @@
           <!--ゲストログイン用ヘッダー-->
           <% else user_signed_in? && current_user.name == "ゲストユーザー" %>
           <li>
+            (ゲストログイン中)
+          </li>
+          <li>
             <%=  link_to user_path(current_user.id),class: 'nav-link text-light' do %>
               <i class="fas fa-user-circle"></i> マイページ
             <% end %>
