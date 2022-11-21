@@ -4,7 +4,6 @@ class Admin::UserReviewsController < ApplicationController
   def index
     @review = Review.all.page(params[:page]).per(10)
     @reviews = Review.all
-    @user = current_user
     @tag_list = Tag.all
   end
 
@@ -18,7 +17,7 @@ class Admin::UserReviewsController < ApplicationController
   def destroy
     @review = Review.find(params[:id])
     @review.destroy
-    # redirect_to _path
+    redirect_to admin_user_reviews_path
   end
 
 end
