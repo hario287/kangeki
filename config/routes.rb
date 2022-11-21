@@ -32,6 +32,9 @@ scope module: :public do
 
   resources :posts do
     resources :post_comments, only: [:create, :destroy]
+    collection do
+      get 'search'
+    end
   end
 
   resources :reviews do

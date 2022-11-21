@@ -14,18 +14,5 @@
       <% end %>
     <% else %>
     <% end %>
-
-    <!--ユーザー用-->
-    <% if user_signed_in? %>
-      <%= form_with url: search_path, local: true, method: :get do |f| %>
-        <%= f.text_field :word, class: 'form-control' %>
-        <%= f.select :range, options_for_select([['User'], ['Post'],['Review']]) %>
-        <%= f.select :search, options_for_select([["完全一致","perfect_match"], ["部分一致","partial_match"]]) %>
-        <%= button_tag :type => "submit", :class =>"btn btn-default btn-s-md" do %>
-          <i class="fa fa-search"></i>
-        <% end %>
-      <% end %>
-    <% else %>
-    <% end %>
   </div>
 </div>

@@ -22,13 +22,17 @@ class Public::PostsController < ApplicationController
     @posts = Post.all
     @user = current_user
     @post = Post.new
+
+    @topics = Topic.all
+    @search_post = Post.where(topic_id: params[:topic]).order(created_at: :desc).page(params[:page]).per(8)
+    @topic = Topic.find_by(id: params[:topic])
   end
 
   def show
     @post = Post.find(params[:id])
     @user = User.find(@post.user.id)
-    # @user = User.find_by(name: 'guestUser')
     @post_comment = PostComment.new
+    @topics = Topic.all
   end
 
   def edit
