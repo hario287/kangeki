@@ -6,12 +6,12 @@
         <%= form_with model: @user, url: user_registration_path do |f| %></br>
           <div class="field">
             <%= f.label :"ユーザーネーム" %></br>
-            <%= f.text_field :name, placeholder:"ユーザーネームを入力", size: "30" %>
+            <%= f.text_field :name, class:"form-control", placeholder:"ユーザーネームを入力", size: "30" %>
           </div>
           <p>
           <div class="field">
             <%= f.label :"メールアドレス" %></br>
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"メールアドレスを入力", size: "30" %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", placeholder:"メールアドレスを入力", size: "30" %>
           </div>
           <p>
           <div class="field">
@@ -19,15 +19,15 @@
             <% if @minimum_password_length %>
             <em>(<%= @minimum_password_length %> 字以上)</em></br>
             <% end %>
-            <%= f.password_field :password, autocomplete: "new-password", placeholder:"6文字以上で入力", size: "30" %>
+            <%= f.password_field :password, autocomplete: "new-password", class:"form-control", placeholder:"6文字以上で入力", size: "30" %>
           </div>
 
           <div class="field">
             <%= f.label :"パスワード(確認)" %><br>
-            <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder:"6文字以上で入力", size: "30" %>
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control", placeholder:"6文字以上で入力", size: "30" %>
           </div>
           <br>
-          <div class="col-7 mx-auto">
+          <div class="col-10 mx-auto">
             <%= f.submit "登録する", class: "btn btn-info btn-block" %>
           </div>
         <% end %>

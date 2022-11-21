@@ -7,6 +7,8 @@ before_action :authenticate_admin!
 
   def show
     @user = User.find(params[:id])
+    @reviews = @user.reviews.page(params[:page])
+    @posts = @user.posts.page(params[:page])
   end
 
   def edit
@@ -21,6 +23,6 @@ before_action :authenticate_admin!
 
   private
   def user_params
-    params.require(:user).permit(:name, :introduction, :email, :is_deleted)
+    params.require(:user).permit(:name, :profile_image, :email, :user_prefecture, :introduction, :is_deleted,)
   end
 end

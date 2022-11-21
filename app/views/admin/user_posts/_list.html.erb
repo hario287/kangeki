@@ -1,0 +1,25 @@
+<table class='table table-sm'>
+  <thead>
+    <tr>
+      <th>ユーザー</th>
+      <th>タイトル</th>
+      <th>トピック</th>
+      <th>コメント</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% posts.each do |post| %>
+      <tr>
+        <td>
+          <%= link_to admin_user_post_path(post.user) do %>
+            <%= image_tag post.user.get_profile_image(50,50), class: "rounded-circle" %>
+          <% end %>
+        </td>
+        <td><%= link_to post.title,admin_user_post_path(post.id), class: "text-reset" %></td>
+        <td><%= post.topic.topic_name %></td>
+        <td>コメント数 <%= post.post_comments.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
