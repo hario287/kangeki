@@ -5,11 +5,11 @@
       <%= form_with model: @user, url: user_session_path do |f| %><br>
 
         <div class="field">
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"メールアドレスを入力", size: "30" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control", placeholder:"メールアドレスを入力", size: "30" %>
         </div>
         </br>
         <div class="field">
-          <%= f.password_field :password, autocomplete: "current-password", placeholder:"パスワードを入力", size: "30" %>
+          <%= f.password_field :password, autocomplete: "current-password", class:"form-control", placeholder:"パスワードを入力", size: "30" %>
         </div>
         <p>
         <% if devise_mapping.rememberable? %>
@@ -19,7 +19,7 @@
           </div>
         <% end %>
         </br>
-        <div class="col-7 mx-auto">
+        <div class="col-10 mx-auto">
           <%= f.submit "ログイン", class: "btn btn-info btn-block" %>
         </div>
       <% end %>

@@ -34,9 +34,19 @@
 
         <!--管理者用ヘッダー-->
         <% elsif admin_signed_in?  %>
-         <li>
+          <li>
             <%= link_to admin_users_path,class: 'nav-link text-light' do %>
               <i class="fas fa-users"></i> ユーザー管理
+            <% end %>
+          </li>
+          <li>
+            <%= link_to admin_user_reviews_path,class: 'nav-link text-light' do %>
+              <i class="fas fa-pen"></i> レビュー管理
+            <% end %>
+          </li>
+          <li>
+            <%= link_to admin_user_posts_path,class: 'nav-link text-light' do %>
+              <i class="fas fa-comments"></i> 投稿管理
             <% end %>
           </li>
           <li>

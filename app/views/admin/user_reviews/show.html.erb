@@ -1,2 +1,71 @@
-<h1>Admin::UserReviews#show</h1>
-<p>Find me in app/views/admin/user_reviews/show.html.erb</p>
+<div class='container'>
+  <div class="row no-gutters">
+    <div class="col-8 p-3">
+      <div class="card mt-3">
+        <div class="card-header">
+          <div class="row">
+            <div class="col-2 text-center">
+            <%= image_tag @review.user.get_profile_image(50,50), class: "rounded-circle" %>
+             </div>
+             <div class="col-9">
+              <i class="far fa-user" style="color: #9C8D65;"></i>
+              <%= link_to admin_user_path(@review.user) do %>
+              <%= @review.user.name %><% end %>さん
+              <br>
+              <i class="far fa-calendar" style="color: #9C8D65;"></i> <%= @review.created_at.strftime('%Y年%m月%d日') %>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <h1>
+            <% if @review.review_image.attached? %>
+              <%= image_tag @review.review_image, class: "card-img-top" %>
+            <% end %>
+          </h1>
+          <h2 class="card-title">公演： <font color="#345362"><%= @review.stage_name %></font></h2>
+          <h6 class="card-subtitle mb-2 text-muted">タグ <i class="fas fa-comments" style="color: #9C8D65;"></i>
+            <% @review_tags.each do |tag| %>
+            <%=tag.name%><%="(#{tag.reviews.count})" %>
+            <% end %>
+          </h6>
+          <div id="rate<%= @review.id%>"></div>
+          <p class="card-text">満足度： <%= @review.rate %></p>
+          <script>
+          $('#rate<%= @review.id%>').raty({
+            size      : 36,
+            starOff   : '<%= asset_path('star-off.png') %>',
+            starOn    : '<%= asset_path('star-on.png') %>',
+            half      : false,
+            readOnly: true,
+            score: <%= @review.rate %>,
+          });
+          </script>
+          <p class="card-text">団体： <%= @review.group %></p>
+          <p class="card-text">感想・レビュー： <%= @review.body %></p>
+
+          <div id="favorite_buttons_<%= @review.id %>">
+            <%= render 'public/favorites/favorite', review: @review %>
+          </div>
+          <p class="comment_count">
+            <%= "コメント" + @review.review_comments.count.to_s + "件" %>
+          </p>
+
+      <div class="row">
+        <div class="col-12">
+          <div class="text-right">
+          <%= link_to "投稿を削除", admin_user_review_path(@review), method: :delete, data: { confirm: "本当に削除してもよろしいですか？" }, class: "btn btn-outline-secondary" %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="row">
+      <div class="col-12">
+       <%= render "public/review_comments/index", review: @review %>
+      </div>
+       <%= link_to "レビューの一覧へ戻る", reviews_path, style: "color:#345362;" %>
+      </div>
+     </div>
+    </div>
+  </div>
+</div>

@@ -2,16 +2,18 @@
   <%= render 'layouts/errors', obj: @post %>
   <div class='row'>
     <div class='col-md-3'>
-      <%= render 'sidebar', posts: @posts %>
+      <%= render 'sidebar', topics: @topics %>
     </div>
 
     <div class='col-md-9 mt-3 offset'>
       <h2 class="font-weight-bold"><font color="#345362">談話室</font></h2>
       <span>あああ</span>
-      <% if params[:genre] == nil %>
-      <% else %>
-        <h4 class="d-inline-block"><%= @topic.topic_name %>一覧</h4>
-      <% end %>
+      <span>
+        <% if params[:topic] == nil %>
+        <% else %>
+        <h5>「<%= @topic.topic_name %>」一覧</h5>
+        <% end %>
+      </span>
       <%= render 'index', posts: @posts %>
     </div>
   </div>

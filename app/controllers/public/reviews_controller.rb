@@ -1,5 +1,5 @@
 class Public::ReviewsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, unless: :admin_signed_in?
 
   def new
     @review = Review.new
