@@ -1,13 +1,15 @@
-<% if review.favorited_by?(current_user) %>
- <!--いいねがクリックされている状態とされていない状態で表示を変える-->
-  <%= link_to review_favorites_path(review), method: :delete, remote: true do %>
-  <i class="fas fa-heart" aria-hidden="true" style="color: #9F002D;"></i>
-  <% end %>
-  <%= review.favorites.count %>
+<% if user_signed_in? %>
+ <% if review.favorited_by?(current_user) %>
+  <!--いいねがクリックされている状態とされていない状態で表示を変える-->
+   <%= link_to review_favorites_path(review), method: :delete, remote: true do %>
+   <i class="fas fa-heart" aria-hidden="true" style="color: #9F002D;"></i>
+   <% end %>
+   <%= review.favorites.count %>
 
-<% else %>
-  <%= link_to review_favorites_path(review), method: :post, remote: true do %>
-  <i class="far fa-heart" aria-hidden="true" style="color: #9F002D;"></i>
-  <% end %>
-  <%= review.favorites.count %>
+ <% else %>
+   <%= link_to review_favorites_path(review), method: :post, remote: true do %>
+   <i class="far fa-heart" aria-hidden="true" style="color: #9F002D;"></i>
+   <% end %>
+   <%= review.favorites.count %>
+ <% end %>
 <% end %>
