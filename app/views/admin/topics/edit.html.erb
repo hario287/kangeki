@@ -1,0 +1,18 @@
+<div class="container pt-5 px-sm-0">
+  <div class="row">
+    <h3 style="background-color: #eee;">トピック編集</h3>
+  </div>
+  <div class="mt-5">
+    <%= form_with model: [:admin, @topic], local: true do |f| %>
+      <div class ="row">
+        <div class="col-md-3 text-center">トピック名</div>
+        <div class="col-md-3 text-center">
+          <%= f.text_field :topic_name, autocomplete: "topic_name", class:"form-control", placeholder: 'トピック名' %>
+        </div>
+        <div class="col-md-3 text-center">
+          <%= f.submit ' 変更を保存 ', class: "btn btn-sm btn-info" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

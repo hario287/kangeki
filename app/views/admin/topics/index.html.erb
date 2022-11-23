@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <h3 class="col-md-12"><i class="fas fa-list"></i>トピック一覧・追加</h3>
+  </div>
+  <div class="mt-5">
+    <%= form_with model: [:admin, @topic],local: true do |f| %>
+    <div class ="row">
+      <div class="col-md-2 text-center">トピック名</div>
+        <div class="col-md-3">
+          <%= f.text_field :topic_name, autocomplete: "topic_name", class:"form-control", placeholder: 'トピック名' %>
+        </div>
+        <div>
+          <%= f.submit '   新規登録   ', class: "btn btn-lg btn-info btn-inline ml-5" %>
+        </div>
+    </div>
+    <% end %>
+  </div>
+  <div class="row mt-5">
+    <div class="col-md-5">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">トピック</th>
+
+          </tr>
+        </thead>
+        <tbody>
+          <% @topics.each do |topic| %>
+            <tr>
+              <td class=""><%= topic.topic_name %></td>
+              <td class="text-center"><%= link_to '   編集する  ', edit_admin_topic_path(topic.id), class: "btn btn-sm btn-info" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

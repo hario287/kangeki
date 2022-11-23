@@ -1,0 +1,14 @@
+<div class="search mt-3 mb-4">
+  <h5 class="font-weight-bold"><i class="fas fa-search" style="color: #9C8D65;"></i><font color="#345362"> キーワード検索</font></h5>
+    <% if user_signed_in? %>
+    <%= form_with url: search_reviews_path, local: true, method: :get do |f| %>
+      <%= f.text_field :keyword, :size=> "27" %>
+      <% f.submit %>
+    <% end %>
+    <% else %>
+  <% end %>
+</div>
+<div class="mt-3">
+  <h5 class="font-weight-bold"><i class="fas fa-pen" style="color: #9C8D65;"></i><font color="#345362"> 観劇後の感想を投稿しよう</font></h5>
+  <p class="col"><%= link_to "　新しく投稿する　", new_review_path , class: "btn btn-info mr-5" %></p>
+</div>

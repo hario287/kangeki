@@ -1,0 +1,44 @@
+<table class="table text-nowrap">
+  <tr><%= image_tag user.get_profile_image(100,100), class: "rounded-circle" %></tr>
+  <tr>
+	  <td class="info">ユーザーネーム</td>
+	  <td><%= user.name %></td>
+  </tr>
+  <tr>
+	  <td class="info">自己紹介</td>
+	  <td><%= user.introduction %></td>
+  </tr>
+  <tr>
+	  <td class="info">地域</td>
+	  <td><%= user.user_prefecture %></td>
+  </tr>
+   <tr>
+	  <td class="info">メールアドレス</td>
+	  <td><%= user.email %></td>
+  </tr>
+  <tr>
+    <td class="followings">フォロー
+    <%= link_to user.followings.count, user_followings_path(user) %>
+    </td>
+    <td class="followers">フォロワー
+    <%= link_to user.followers.count, user_followers_path(user) %>
+    </td>
+    </td>
+  </tr>
+</table>
+
+<div class="info ml-2">
+  <% if current_user != user%>
+    <% if current_user.following?(user) %>
+      <%= link_to "フォロー中", user_relationships_path(user.id), class: "badge badge-pill badge-info", method: :delete %>
+    <% else %>
+      <%= link_to "フォロー", user_relationships_path(user.id), class: "badge badge-pill badge-info", method: :post %>
+    <% end %>
+  <% end %>
+</div>
+
+      <% if user.name != "ゲストユーザー" %>
+        <% if user == current_user %>
+          <p class="ml-4"><%= link_to "プロフィール編集", edit_user_path(user), class: "btn btn-outline-secondary" %></p>
+        <% end %>
+      <% end %>

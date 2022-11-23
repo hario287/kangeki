@@ -1,0 +1,17 @@
+<div class="topic col mt-3">
+  <h5 class="font-weight-bold"><i class="fas fa-comments" style="color: #9C8D65;"></i><font color="#345362"> トピック一覧</font></h5>
+    <div class="card">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"><%= link_to "すべて",posts_path, class: "text-reset" %></li>
+        <% topics.each do |topic| %>
+        <li class="list-group-item"><%= link_to topic.topic_name, posts_path(topic: topic.id), class: "text-reset"%></li>
+        <% end %>
+      </ul>
+    </div>
+</div>
+
+<div class="col mt-3">
+  <h5 class="font-weight-bold">
+    <i class="fas fa-pen" style="color: #9C8D65;"></i><font color="#345362"> 話題を投稿しよう</font></h5>
+    <p><%= link_to "新しく投稿する", new_post_path , class: "btn btn-info btn-block mr-5" %></p>
+</div>
