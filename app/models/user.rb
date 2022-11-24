@@ -26,12 +26,13 @@ class User < ApplicationRecord
 
   # ゲストユーザー
   def self.guest
-    find_or_create_by!(name: 'GuestUser', email: "guest@example.com") do |user|
+    find_or_create_by!(name: 'ゲストユーザー', email: "guest@example.com") do |user|
       user.password = SecureRandom.urlsafe_base64
-      user.name = "GuestUser"
+      user.name = "ゲストユーザー"
     end
   end
 
+  # 画像設定
   def get_profile_image(width,height)
    unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')

@@ -38,6 +38,7 @@
           });
         </script>
 
+      <% if user_signed_in? %>
         <td id="favorite_buttons_<%= review.id %>">
           <!--リンクなし-->
           <% if review.favorited_by?(current_user) %>
@@ -48,6 +49,7 @@
             <%= review.favorites.count %>
           <% end %>
         </td>
+      <% end %>
 
       </tr>
     <% end %>
