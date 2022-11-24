@@ -1,5 +1,5 @@
 class Public::UsersController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, unless: :admin_signed_in?
   before_action :ensure_guest_user, only: [:edit]
 
   def show
@@ -11,7 +11,6 @@ class Public::UsersController < ApplicationController
   def index
     @users = User.all
   end
-
 
   def edit
     @user = User.find(params[:id])

@@ -9,7 +9,7 @@ class Review < ApplicationRecord
   has_one_attached :review_image
 
   def favorited_by?(user)
-    favorites.where(user_id: user.id).exists?
+    favorites.exists?(user_id: user.id)
   end
 
   # バリデーション
