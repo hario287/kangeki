@@ -78,7 +78,7 @@
             <% end %>
           </li>
           <li>
-            <%= link_to users_guest_sign_in_path, { method: "post", class: 'nav-link text-light' } do %>
+            <%= link_to users_guest_sign_in_path, { turbo_method: "post", class: 'nav-link text-light' } do %>
               <i class="fas fa-user-shield"></i> ゲストログイン
             <% end %>
           </li>
