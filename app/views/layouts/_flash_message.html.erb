@@ -1,0 +1,8 @@
+<% flash.each do |message_type, message| %>
+  <% if flash[:notice] %>
+      <p><%= notice %></p>
+  <% end %>
+  <% if flash[:alert] %>
+      <p><%= alert %></p>
+  <% end %>
+<% end %>

@@ -1,6 +1,6 @@
 <div class='container'>
   <div class="row no-gutters">
-    <div class="col-8 p-3">
+    <div class="col-md-9 col-sm-10 mx-2 mx-sm-auto px-0 my-3">
       <div class="card mt-3">
         <div class="card-header">
           <div class="row">
@@ -64,14 +64,13 @@
   </div>
     <div class="row">
       <div class="col-12">
-       <%= render "public/review_comments/index", review: @review %>
+        <div class="review_comments">
+         <%= render "public/review_comments/index", review: @review %>
+         <%= render "public/review_comments/form", review: @review, review_comment: @review_comment %>
+        </div>
       </div>
-      <div class="col-8">
-       <%= render "public/review_comments/form", review: @review, review_comment: @review_comment %>
-
        <%= link_to "レビューの一覧へ戻る", reviews_path, style: "color:#345362;" %>
       </div>
-     </div>
     </div>
   </div>
 </div>
