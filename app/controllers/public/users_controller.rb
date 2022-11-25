@@ -40,7 +40,7 @@ class Public::UsersController < ApplicationController
 
   # いいね
   def favorites
-    @user = current_user
+    @user = User.find(params[:id])
     favorites = Favorite.where(user_id: @user.id).pluck(:review_id)
     @favorite_reviews = Review.find(favorites)
   end
@@ -54,7 +54,7 @@ class Public::UsersController < ApplicationController
   def ensure_guest_user
     @user = User.find(params[:id])
     if @user.name == "ゲストユーザー"
-      redirect_to user_path(current_user) , notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
+      redirect_to root_path, notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
     end
   end
 end

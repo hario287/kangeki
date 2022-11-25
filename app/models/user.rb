@@ -22,11 +22,10 @@ class User < ApplicationRecord
   has_many :view_counts, dependent: :destroy
 
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
-  # validates :introduction
 
   # ゲストユーザー
   def self.guest
-    find_or_create_by!(name: 'ゲストユーザー', email: "guest@example.com") do |user|
+    find_or_create_by!(email: "guest@example.com") do |user|
       user.password = SecureRandom.urlsafe_base64
       user.name = "ゲストユーザー"
     end
