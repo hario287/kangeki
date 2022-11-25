@@ -29,9 +29,9 @@ class Public::ReviewsController < ApplicationController
 
   def index
     @reviews = Review.page(params[:page])
-    @reviews = Review.all
     @user = current_user
     @review = Review.new
+     @reviews = Review.all.order(params[:sort])
     @tag_list = Tag.all
   end
 
