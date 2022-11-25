@@ -59,4 +59,18 @@ class Review < ApplicationRecord
     end
    end
 
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @review = Review.where("stage_name LIKE?","#{word}")
+    elsif search == "forward_match"
+      @review = Review.where("stage_name LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @review = Review.where("stage_name LIKE?","%#{word}")
+    elsif search == "partial_match"
+      @review = Review.where("stage_name LIKE?","%#{word}%")
+    else
+      @review = Review.all
+    end
+  end
+
 end
