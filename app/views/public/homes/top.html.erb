@@ -2,6 +2,7 @@
 <div id="top" class="top-content";>
 
         <% if user_signed_in? %>
+        ログインしてるよ
         <% else%>
             <div class="signup-button">
                 <%= link_to "新規登録", new_user_registration_path, class: "btn btn-outline-dark" %>
