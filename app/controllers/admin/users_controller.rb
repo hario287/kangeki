@@ -3,6 +3,7 @@ before_action :authenticate_admin!
 
   def index
     @user = User.page(params[:page]).per(10)
+    @users = User.all
   end
 
   def show
@@ -18,7 +19,7 @@ before_action :authenticate_admin!
   def update
     @user = User.find(params[:id])
     @user.update(user_params)
-    redirect_to admin_users_path(@user.id)
+    redirect_to admin_user_path(@user.id)
   end
 
   private

@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8"/>
     <title>Kangeki</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -12,7 +14,8 @@
   <body>
     <body class="d-flex flex-column vh-100" style="background-color: #efefef">
       <%= render 'layouts/header' %>
-      <%= render 'layouts/search' %>
+      <%= render 'admin/searches/search' %>
+      <%= render 'layouts/flash_message' %>
 
     <%= yield %>
     <%= render 'layouts/footer' %>

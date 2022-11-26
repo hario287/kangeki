@@ -60,31 +60,8 @@
             <% end %>
           </li>
 
-        <!--ログイン前ヘッダー-->
-        <% elsif %>
-          <li>
-            <%= link_to about_path,class: 'nav-link text-light' do %>
-              <i class="fas fa-hashtag"></i> kangekiとは
-            <% end %>
-          </li>
-          <li>
-            <%= link_to new_user_registration_path,class: 'nav-link text-light' do %>
-              <i class="fas fa-user-plus"></i> 新規登録
-            <% end %>
-          </li>
-          <li>
-            <%= link_to new_user_session_path ,class: 'nav-link text-light' do %>
-              <i class="fas fa-sign-in-alt"></i> ログイン
-            <% end %>
-          </li>
-          <li>
-            <%= link_to users_guest_sign_in_path, { method: "post", class: 'nav-link text-light' } do %>
-              <i class="fas fa-user-shield"></i> ゲストログイン
-            <% end %>
-          </li>
-
           <!--ゲストログイン用ヘッダー-->
-          <% else user_signed_in? && current_user.name == "ゲストユーザー" %>
+          <% elsif user_signed_in? && current_user.name == "ゲストユーザー" %>
           <li>
             (ゲストログイン中)
           </li>
@@ -105,6 +82,29 @@
           <li>
             <%= link_to destroy_admin_session_path, method: :delete,class: 'nav-link text-light' do %>
               <i class="fas fa-sign-out-alt"></i> ログアウト
+            <% end %>
+          </li>
+
+           <!--ログイン前ヘッダー-->
+        <% else %>
+          <li>
+            <%= link_to about_path,class: 'nav-link text-light' do %>
+              <i class="fas fa-hashtag"></i> kangekiとは
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_user_registration_path,class: 'nav-link text-light' do %>
+              <i class="fas fa-user-plus"></i> 新規登録
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_user_session_path ,class: 'nav-link text-light' do %>
+              <i class="fas fa-sign-in-alt"></i> ログイン
+            <% end %>
+          </li>
+          <li>
+            <%= link_to users_guest_sign_in_path, { method: "post", class: 'nav-link text-light' } do %>
+              <i class="fas fa-user-shield"></i> ゲストログイン
             <% end %>
           </li>
         <% end %>

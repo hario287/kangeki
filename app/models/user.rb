@@ -22,16 +22,16 @@ class User < ApplicationRecord
   has_many :view_counts, dependent: :destroy
 
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
-  # validates :introduction
 
   # ゲストユーザー
   def self.guest
-    find_or_create_by!(name: 'GuestUser', email: "guest@example.com") do |user|
+    find_or_create_by!(email: "guest@example.com") do |user|
       user.password = SecureRandom.urlsafe_base64
-      user.name = "GuestUser"
+      user.name = "ゲストユーザー"
     end
   end
 
+  # 画像設定
   def get_profile_image(width,height)
    unless profile_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
@@ -66,6 +66,21 @@ class User < ApplicationRecord
      福岡県:40,佐賀県:41,長崎県:42,熊本県:43,大分県:44,宮崎県:45,鹿児島県:46,
      沖縄県:47
    }
+
+   # 検索方法分岐
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @user = User.where("name LIKE?", "#{word}")
+    elsif search == "forward_match"
+      @user = User.where("name LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @user = User.where("name LIKE?","%#{word}")
+    elsif search == "partial_match"
+      @user = User.where("name LIKE?","%#{word}%")
+    else
+      @user = User.all
+    end
+  end
 
    #特定条件のユーザーのログインを不可にする
   def active_for_authentication?

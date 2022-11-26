@@ -24,8 +24,12 @@ class Public::PostsController < ApplicationController
     @post = Post.new
 
     @topics = Topic.all
-    @search_post = Post.where(topic_id: params[:topic]).order(created_at: :desc).page(params[:page]).per(8)
-    @topic = Topic.find_by(id: params[:topic])
+    if params[:topic] != nil
+      @topic_p = params[:topic]
+      @topic_search = Post.where(topic_id: @topic_p)
+      @posts = @topic_search.order(created_at: :desc).page(params[:page]).per(8)
+      @topic = Topic.find_by(id: @topic_p)
+    end
   end
 
   def show
