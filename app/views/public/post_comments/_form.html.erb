@@ -1,15 +1,13 @@
 <div class="comment-box">
-  <h5 class="font-weight-bold"><i class="fas fa-comment-dots" style="color: #9C8D65;"></i><font color="#345362"> コメントフォーム</h5></font>
-    <div class="form-body">
-      <%= form_with model: [post, post_comment], method: :post do |f| %>
-      <%= f.hidden_field :post_id, value: post.id %>
-      <%= f.text_area :comment, class:"form-control", rows: '5', placeholder: "コメントを入力してください" %>
-      <div class="text-right">
-      <%= f.submit "送信する", class:"btn btn-info btn-right mt-4" %>
-      </di>
-    </div>
-      <% end %>
-    </div>
+  <div id="flash_message">
   </div>
- </div>
+  <h5 class="font-weight-bold"><i class="fas fa-comment-dots" style="color: #9C8D65;"></i><font color="#345362"> コメントフォーム</h5></font>
+  <%= form_with(model: [post, post_comment], local: false) do |f| %>
+  <div class="form-body">
+    <%= f.text_area :comment, class:"form-control", id: "post_comment_area", rows: '5', placeholder: "コメントを入力してください" %>
+  </div>
+  <div class="form-body">
+    <%= f.submit "送信する", class:"btn btn-info btn-right mt-4" %>
+  </div>
+  <% end %>
 </div>

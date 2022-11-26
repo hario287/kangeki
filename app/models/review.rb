@@ -9,7 +9,7 @@ class Review < ApplicationRecord
   has_one_attached :review_image
 
   def favorited_by?(user)
-    favorites.where(user_id: user.id).exists?
+    favorites.exists?(user_id: user.id)
   end
 
   # バリデーション
@@ -58,5 +58,19 @@ class Review < ApplicationRecord
       self.tags << new_review_tag
     end
    end
+
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @review = Review.where("stage_name LIKE?","#{word}")
+    elsif search == "forward_match"
+      @review = Review.where("stage_name LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @review = Review.where("stage_name LIKE?","%#{word}")
+    elsif search == "partial_match"
+      @review = Review.where("stage_name LIKE?","%#{word}%")
+    else
+      @review = Review.all
+    end
+  end
 
 end

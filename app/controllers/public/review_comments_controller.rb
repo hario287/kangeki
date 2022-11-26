@@ -1,14 +1,15 @@
 class Public::ReviewCommentsController < ApplicationController
+  before_action :authenticate_user!, unless: :admin_signed_in?
 
   def create
     @review = Review.find(params[:review_id])
-    review_comment = current_user.review_comments.new(review_comment_params)
-    review_comment.review_id = @review.id
-    if review_comment.save
+    @review_comment = current_user.review_comments.new(review_comment_params)
+    @review_comment.review_id = @review.id
+    if @review_comment.save
+      @review_comment = ReviewComment.new(user: current_user)
       flash.now[:notice] = "コメントしました"
-      redirect_to review_path(@review)
     else
-      render :error
+      flash.now[:notice] = "コメントを入力してください"
     end
   end
 
@@ -17,7 +18,7 @@ class Public::ReviewCommentsController < ApplicationController
     review_comment = ReviewComment.find(params[:id])
     review_comment.destroy
     flash.now[:alert] = "コメントを削除しました"
-    redirect_to review_path(@review)
+    render :destroy
   end
 
   private

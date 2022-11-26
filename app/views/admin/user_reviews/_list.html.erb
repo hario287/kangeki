@@ -12,12 +12,12 @@
     <% reviews.each do |review| %>
       <tr>
         <td>
-          <%= link_to review_path(review.user) do %>
+          <%= link_to admin_user_path(review.user) do %>
             <%= image_tag review.user.get_profile_image(50,50), class: "rounded-circle" %>
           <% end %>
         </td>
 
-        <td><%= link_to review.stage_name,review_path(review.id) %></td>
+        <td><%= link_to review.stage_name,admin_user_review_path(review.id) %></td>
 
         <td class="card-subtitle mb-2 text-muted">
           <%= review.tags.map(&:name).join(', ') %>
