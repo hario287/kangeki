@@ -1,4 +1,4 @@
-<table class="table text-nowrap">
+<table class="table" style="table-layout: fixed;">
   <tr><%= image_tag user.get_profile_image(100,100), class: "rounded-circle" %></tr>
   <tr>
 	  <td class="info">ユーザーネーム</td>
@@ -6,7 +6,7 @@
   </tr>
   <tr>
 	  <td class="info">自己紹介</td>
-	  <td><%= user.introduction %></td>
+	  <td style="overflow-wrap: break-word;"><%= user.introduction %></td>
   </tr>
   <tr>
 	  <td class="info">地域</td>

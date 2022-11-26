@@ -6,11 +6,10 @@ class Public::PostCommentsController < ApplicationController
     @post_comment = current_user.post_comments.new(post_comment_params)
     @post_comment.post_id = @post.id
     if @post_comment.save
+      @post_comment = PostComment.new(user: current_user)
       flash.now[:notice] = "コメントしました"
-      render :create
     else
       flash.now[:notice] = "コメントを入力してください"
-      render :error
     end
   end
 
