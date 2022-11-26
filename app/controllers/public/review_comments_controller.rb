@@ -6,11 +6,10 @@ class Public::ReviewCommentsController < ApplicationController
     @review_comment = current_user.review_comments.new(review_comment_params)
     @review_comment.review_id = @review.id
     if @review_comment.save
+      @review_comment = ReviewComment.new(user: current_user)
       flash.now[:notice] = "コメントしました"
-      render :create
     else
       flash.now[:notice] = "コメントを入力してください"
-      render :error
     end
   end
 

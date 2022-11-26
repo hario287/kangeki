@@ -3,9 +3,6 @@
   </div>
   <h5 class="font-weight-bold"><i class="fas fa-comment-dots" style="color: #9C8D65;"></i><font color="#345362"> コメントフォーム</h5></font>
   <%= form_with(model: [post, post_comment], local: false) do |f| %>
-  <div id='comments_error'>
-    <%= render "layouts/errors", obj: post_comment %>
-  </div>
   <div class="form-body">
     <%= f.text_area :comment, class:"form-control", id: "post_comment_area", rows: '5', placeholder: "コメントを入力してください" %>
   </div>
