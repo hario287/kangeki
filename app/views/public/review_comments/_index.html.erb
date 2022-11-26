@@ -4,17 +4,27 @@
         <% review.review_comments.each do |review_comment| %>
           <%= image_tag review_comment.user.get_profile_image(40, 40), class: "rounded-circle" %>
           <i class="far fa-user" style="color: #9C8D65;"></i>
+          <!--管理者用-->
+          <% if current_admin.present? %>
+            <%= link_to admin_user_path(review_comment.user.id) do %>
+                <%= review_comment.user.name %>
+              <% end %>さんからのコメント
+          <!--ユーザー用-->
+          <% else %>
             <%= link_to user_path(review_comment.user.id) do %>
               <%= review_comment.user.name %>
             <% end %>さんからのコメント
+          <% end %>
           <br>
           <p class="card-text"><%= review_comment.comment %></p>
             <div class="row">
               <div class="col-12">
                 <i class="far fa-calendar" style="color: #9C8D65;"></i> <%= review_comment.created_at.strftime('%Y年%m月%d日') %>
                 <div class="text-right">
-                  <% if review_comment.user == current_user %>
-                  <%= link_to "削除", review_review_comment_path(review_comment.review, review_comment), method: :delete, remote: true, data: { confirm: '本当に削除してもよろしいですか？' }, class: 'btn btn-sm btn-outline-secondary' %>
+                  <% if review_comment.user == current_admin %>
+                    <%= link_to "削除", review_review_comment_path(review_comment.review, review_comment), method: :delete, remote: true, data: { confirm: '本当に削除してもよろしいですか？' }, class: 'btn btn-sm btn-outline-secondary' %>
+                  <% else review_comment.user == current_user %>
+                    <%= link_to "削除", review_review_comment_path(review_comment.review, review_comment), method: :delete, remote: true, data: { confirm: '本当に削除してもよろしいですか？' }, class: 'btn btn-sm btn-outline-secondary' %>
                   <% end %>
                 </div>
               </div>
