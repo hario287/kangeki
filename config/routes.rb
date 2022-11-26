@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
 
-  namespace :admin do
-    get 'searches/search'
-  end
+  root 'public/homes#top'
+
 # ユーザー用
 # URL /users/sign_in ...
 devise_for :users,skip: [:passwords], controllers: {
@@ -23,7 +22,7 @@ end
 
 #ユーザー側
 scope module: :public do
-  root 'homes#top'
+  # root 'homes#top'
   get 'about' => "homes#about", as: 'about'
 
   resources :users do
