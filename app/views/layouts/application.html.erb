@@ -11,14 +11,14 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <body class="d-flex flex-column vh-100" style="background-color: #efefef">
-      <%= render 'layouts/header' %>
-      <%= render 'admin/searches/search' %>
-      <%= render 'layouts/flash_message' %>
+  <body class="d-flex flex-column vh-100">
+    <main>
+        <%= render 'layouts/header' %>
+        <%= render 'admin/searches/search' %>
+        <%= render 'layouts/flash_message' %>
 
-    <%= yield %>
+      <%= yield %>
+    </main>
     <%= render 'layouts/footer' %>
-
   </body>
 </html>

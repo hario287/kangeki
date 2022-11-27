@@ -1,2 +1,26 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
+
+body{
+  font-family: "ヒラギノ角ゴシック";
+  background-color: #ffffff;
+}
+
+.top-image{
+  text-align : center
+}
+
+.top-text{
+  background-color: #ffffff;
+  text-align: center;
+  margin: 0;
+}
+
+@media screen and (max-width: 767px) {
+  .th_responsive{
+    padding-bottom: 0.25rem !important;
+  }
+  .td_responsive{
+    padding-top: 0.25rem !important;
+  }
+}
