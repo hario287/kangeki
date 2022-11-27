@@ -1,19 +1,19 @@
-<table class="table" style="table-layout: fixed;">
+<table class="table table-borderless" style="table-layout: fixed;">
   <tr><%= image_tag user.get_profile_image(100,100), class: "rounded-circle" %></tr>
   <tr>
-	  <td class="info">ユーザーネーム</td>
+	  <td class="info">ユーザーネーム:</td>
 	  <td><%= user.name %></td>
   </tr>
   <tr>
-	  <td class="info">自己紹介</td>
+	  <td class="info">自己紹介:</td>
 	  <td style="overflow-wrap: break-word;"><%= user.introduction %></td>
   </tr>
   <tr>
-	  <td class="info">地域</td>
+	  <td class="info">地域:</td>
 	  <td><%= user.user_prefecture %></td>
   </tr>
    <tr>
-	  <td class="info">メールアドレス</td>
+	  <td class="info">メールアドレス:</td>
 	  <td><%= user.email %></td>
   </tr>
   <tr>

@@ -2,14 +2,14 @@ class Public::UsersController < ApplicationController
   before_action :authenticate_user!, unless: :admin_signed_in?
   before_action :ensure_guest_user, only: [:edit]
 
+  def index
+    @users = User.all
+  end
+
   def show
     @user = User.find(params[:id])
     @reviews = @user.reviews.page(params[:page])
     @posts = @user.posts.page(params[:page])
-  end
-
-  def index
-    @users = User.all
   end
 
   def edit

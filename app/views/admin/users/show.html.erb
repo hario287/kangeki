@@ -4,7 +4,7 @@
     <h3 class="col-md-12">
       <strong><%= @user.name %>さんのユーザー情報詳細</strong></h3>
   </div>
-    <table class="table table-borderless">
+    <table class="table table-hover">
       <tr><%= image_tag @user.get_profile_image(120,120), class: "rounded-circle" %></tr>
       <tr>
         <td>ユーザー番号</td>
