@@ -15,6 +15,7 @@ import '@fortawesome/fontawesome-free/js/all'
 
 import '../stylesheets/header.css'
 import '../stylesheets/footer.css'
+import '../stylesheets/user.css'
 
 
 window.$ = window.jQuery = require('jquery');
