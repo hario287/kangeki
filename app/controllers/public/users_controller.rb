@@ -26,7 +26,7 @@ class Public::UsersController < ApplicationController
   end
 
   def unsubscribe
-     @user = User.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   #退会処理

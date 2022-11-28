@@ -32,6 +32,10 @@ scope module: :public do
       get 'followers' => 'relationships#followers', as: 'followers'
   end
 
+  # 退会機能
+  get "users/:id/unsubscribe" => "users#unsubscribe", as: "unsubscribe_user"
+  patch "users/:id/withdraw" => "users#withdraw", as: "withdraw_user"
+
   resources :posts do
     resources :post_comments, only: [:create, :destroy]
     collection do
@@ -46,11 +50,6 @@ scope module: :public do
       get 'search'
     end
   end
-
-# 退会機能
-  get "users/unsubscribe" => "users#unsubscribe"
-  patch "users/withdraw" => "users#withdraw"
-
  end
 
 #管理者側
