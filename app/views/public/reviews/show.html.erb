@@ -66,9 +66,7 @@
       <div class="col-12">
         <div class="review_comments">
           <span class="review_comments_index"><%= render "public/review_comments/index", review: @review %></span>
-          <% if @user.name != "ゲストユーザー" %>
-              <%= render "public/review_comments/form", review: @review, review_comment: @review_comment %>
-          <% end %>
+          <%= render "public/review_comments/form", review: @review, review_comment: @review_comment %>
         </div>
       </div>
        <%= link_to "レビューの一覧へ戻る", reviews_path, style: "color:#345362;" %>

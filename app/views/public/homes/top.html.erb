@@ -10,7 +10,7 @@
   </div>
   <% unless (user_signed_in?) || (admin_signed_in?) %>
     <div class="col-5 pt-3 mx-auto" >
-    <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "btn btn-outline-secondary btn-sm btn-block mb-3", method: :post %>
+    <%= link_to 'ゲストログイン', users_guest_sign_in_path, class: "btn btn-outline-secondary btn-sm btn-block mb-3", method: :post %>
     <%= link_to 'ログイン',new_user_session_path, class: "btn btn-outline-info btn-sm btn-block mb-3" %>
     <%= link_to '新規登録',new_user_registration_path, class: "btn btn-outline-success btn-sm btn-block" %>
     </div>

@@ -43,9 +43,7 @@
       <div class="col-12">
         <div class="post_comments">
           <span class="post_comments_index"><%= render "public/post_comments/index", post: @post %></span>
-          <% if @user.name != "ゲストユーザー" %>
             <%= render "public/post_comments/form", post: @post, post_comment: @post_comment %>
-          <% end %>
         </div>
       </div>
        <%= link_to "投稿一覧へ戻る", posts_path, style: "color:#345362;" %>
