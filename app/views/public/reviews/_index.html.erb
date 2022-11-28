@@ -18,7 +18,7 @@
           <% end %>
         </td>
 
-        <td><%= link_to review.stage_name,review_path(review.id) %></td>
+        <td><%= link_to review.stage_name,review_path(review.id), class: "text-reset" %></td>
 
         <td class="card-subtitle mb-2 text-muted">
           <%= review.tags.map(&:name).join(', ') %>

@@ -9,12 +9,12 @@
           <i class="far fa-user" style="color: #638c93;"></i>
           <!--管理者用-->
           <% if current_admin.present? %>
-            <%= link_to admin_user_path(post_comment.user.id) do %>
+            <%= link_to admin_user_path(post_comment.user.id), class: "text-reset" do %>
                 <%= post_comment.user.name %>
               <% end %>さんからのコメント
           <!--ユーザー用-->
           <% else %>
-            <%= link_to user_path(post_comment.user.id) do %>
+            <%= link_to user_path(post_comment.user.id), class: "text-reset" do %>
               <%= post_comment.user.name %>
           <% end %>さんからのコメント
           <% end %>
