@@ -14,7 +14,7 @@ class Public::PostsController < ApplicationController
     else
       @user = current_user
       @posts = Post.all
-      render :index
+      render "new"
     end
   end
 

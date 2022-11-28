@@ -23,7 +23,7 @@ class Public::ReviewsController < ApplicationController
     else
       @user = current_user
       @reviews = Review.all
-      render 'index'
+      render 'new'
     end
   end
 

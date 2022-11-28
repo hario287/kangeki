@@ -1,0 +1,13 @@
+ja:
+  activerecord:
+    attributes:
+      review:
+        stage_name: 公演名
+        body: 感想
+        rate: 満足度
+      user:
+        name: ユーザー名
+      post:
+        title: タイトル
+        body: 投稿内容
+        topic: トピック

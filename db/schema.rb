@@ -74,6 +74,7 @@ ActiveRecord::Schema.define(version: 2022_11_18_212644) do
     t.text "body", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["topic_id"], name: "index_posts_on_topic_id"
   end
 
   create_table "relationships", force: :cascade do |t|
@@ -140,4 +141,5 @@ ActiveRecord::Schema.define(version: 2022_11_18_212644) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "posts", "topics"
 end
