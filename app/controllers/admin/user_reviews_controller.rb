@@ -19,5 +19,4 @@ class Admin::UserReviewsController < ApplicationController
     @review.destroy
     redirect_to admin_user_reviews_path
   end
-
 end

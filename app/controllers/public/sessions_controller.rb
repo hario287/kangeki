@@ -1,22 +1,21 @@
 # frozen_string_literal: true
 
 class Public::SessionsController < Devise::SessionsController
- before_action :user_state, only: [:create]
+  before_action :user_state, only: [:create]
 
-def guest_sign_in
-  user = User.guest
-  sign_in user
-  redirect_to root_path, notice: 'ゲストユーザーでログインしました。'
-end
+  def guest_sign_in
+    user = User.guest
+    sign_in user
+    redirect_to root_path, notice: "ゲストユーザーでログインしました。"
+  end
 
 protected
-
   def after_sign_in_path_for(resource)
-      root_path
+    root_path
   end
 
   def after_sign_out_path_for(resource)
-      root_path
+    root_path
   end
 
   # 退会しているかを判断するメソッド
@@ -31,6 +30,6 @@ protected
   end
 
   def configure_permitted_parameters
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:email])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:email])
   end
 end

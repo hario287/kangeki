@@ -1,5 +1,4 @@
 class Admin::TopicsController < ApplicationController
-
   def index
     @topic = Topic.new
     @topics = Topic.all
@@ -22,7 +21,7 @@ class Admin::TopicsController < ApplicationController
   end
 
   private
-  def topic_params
-    params.require(:topic).permit(:topic_name)
-  end
+    def topic_params
+      params.require(:topic).permit(:topic_name)
+    end
 end

@@ -17,7 +17,7 @@ class Public::UsersController < ApplicationController
   end
 
   def update
-     @user = User.find(params[:id])
+    @user = User.find(params[:id])
     if @user.update(user_params)
       redirect_to user_path(@user.id), notice: "変更しました。"
     else
@@ -29,7 +29,7 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  #退会処理
+  # 退会処理
   def withdraw
     @user = @user = User.find(params[:id])
     @user.update(is_deleted: true)
@@ -46,15 +46,14 @@ class Public::UsersController < ApplicationController
   end
 
   private
-
-  def user_params
-    params.require(:user).permit(:name, :profile_image, :email, :user_prefecture, :introduction, :is_deleted,)
-  end
-
-  def ensure_guest_user
-    @user = User.find(params[:id])
-    if @user.name == "ゲストユーザー"
-      redirect_to root_path, notice: 'ゲストユーザーはプロフィール編集画面へ遷移できません。'
+    def user_params
+      params.require(:user).permit(:name, :profile_image, :email, :user_prefecture, :introduction, :is_deleted,)
     end
-  end
+
+    def ensure_guest_user
+      @user = User.find(params[:id])
+      if @user.name == "ゲストユーザー"
+        redirect_to root_path, notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+      end
+    end
 end

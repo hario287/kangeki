@@ -26,5 +26,4 @@ class Public::ReviewCommentsController < ApplicationController
     def review_comment_params
       params.require(:review_comment).permit(:comment, :review_id)
     end
-
 end
