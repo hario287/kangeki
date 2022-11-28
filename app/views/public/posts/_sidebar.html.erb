@@ -9,8 +9,11 @@
       </ul>
     </div>
 </div>
+
+<% if @user.name != "ゲストユーザー" %>
   <div class="col mt-3">
     <h5 class="font-weight-bold">
       <i class="fas fa-pen" style="color: #638c93;"></i><font color="#345362"> 話題を投稿しよう</font></h5>
       <p class="col"><%= link_to "　新しく投稿する　", new_post_path , class: "btn btn-info mr-5" %></p>
   </div>
+<% end %>
