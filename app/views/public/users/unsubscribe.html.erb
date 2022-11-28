@@ -6,7 +6,7 @@
     これまでのレビュー、投稿が閲覧できなくなります。<br>
     退会する場合は、「退会する」をクリックしてください。</h5>
     <br>
-     <%= link_to "退会しない", users_path , class: "btn btn-info mr-5" %>
+     <%= link_to "退会しない", user_path(@user.id), class: "btn btn-info mr-5" %>
      <%= link_to "退会する", withdraw_user_path, method: :patch, class: "btn btn-secondary ml-5", data: { confilm: "本当に退会しますか？" } %>
    </div>
 </div>
