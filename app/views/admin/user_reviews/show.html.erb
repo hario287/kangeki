@@ -41,7 +41,9 @@
           });
           </script>
           <p class="card-text">団体： <%= @review.group %></p>
-          <p class="card-text">感想・レビュー： <%= @review.body %></p>
+          <p class="card-text">感想・レビュー<br>
+            <%= h(@review.body).gsub(/\n|\r|\r\n/, "<br>").html_safe %>
+          </p>
 
           <div id="favorite_buttons_<%= @review.id %>">
             <%= render 'public/favorites/favorite', review: @review %>

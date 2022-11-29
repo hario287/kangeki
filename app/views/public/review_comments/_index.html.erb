@@ -16,7 +16,7 @@
             <% end %>さんからのコメント
           <% end %>
           <br>
-          <p class="card-text"><%= review_comment.comment %></p>
+          <p class="card-text"><%= h(review_comment.comment).gsub(/\n|\r|\r\n/, "<br>").html_safe %></p>
             <div class="row">
               <div class="col-12">
                 <i class="far fa-calendar" style="color: #638c93;"></i> <%= review_comment.created_at.strftime('%Y年%m月%d日') %>

@@ -24,7 +24,9 @@
           <% if @post.post_image.attached? %>
             <%= image_tag @post.post_image, class: "card-img-top" %>
           <% end %>
-          <p class="card-text mt-3"><%= @post.body %></p>
+          <p class="card-text mt-3">
+            <%= h(@post.body).gsub(/\n|\r|\r\n/, "<br>").html_safe %>
+          </p>
           </h6>
 
       <div class="row">

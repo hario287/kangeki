@@ -6,7 +6,7 @@
   </tr>
   <tr>
 	  <td class="info">自己紹介:</td>
-	  <td style="overflow-wrap: break-word;"><%= user.introduction %></td>
+	  <td style="overflow-wrap: break-word;"><%= h(user.introduction).gsub(/\n|\r|\r\n/, "<br>").html_safe %></td>
   </tr>
   <tr>
 	  <td class="info">地域:</td>
