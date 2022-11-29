@@ -2,7 +2,7 @@ class Admin::UserPostsController < ApplicationController
   before_action :authenticate_admin!
 
   def index
-    @posts = Post.all
+    @posts = Post.page(params[:page])
     @topics = Topic.all
     @search_post = Post.where(topic_id: params[:topic]).order(created_at: :desc).page(params[:page]).per(8)
     @topic = Topic.find_by(id: params[:topic])

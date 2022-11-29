@@ -19,9 +19,9 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
     @user = current_user
     @post = Post.new
+    @posts = Post.page(params[:page])
 
     @topics = Topic.all
     if params[:topic] != nil

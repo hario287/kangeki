@@ -70,6 +70,7 @@ gem "net-imap"
 gem "devise"
 gem "enum_help"
 gem "kaminari", "~> 1.2.1"
+gem 'bootstrap4-kaminari-views'
 gem "jquery-rails"
 gem "rails-i18n"
 
