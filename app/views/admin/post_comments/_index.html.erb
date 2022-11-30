@@ -22,11 +22,9 @@
           <p class="card-text"><%= h(post_comment.comment).gsub(/\n|\r|\r\n/, "<br>").html_safe %></p>
           <div class="row">
             <div class="col-12">
-              <i class="far fa-calendar dark_blue"></i> <%= post_comment.created_at.strftime('%Y年%m月%d日') %>
+              <i class="far fa-calenda dark_blue"></i> <%= post_comment.created_at.strftime('%Y年%m月%d日') %>
               <div class="text-right">
-                <% if post_comment.user == current_user %>
-                  <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, remote: true, data: { confirm: '本当に削除してもよろしいですか？' }, class: 'btn btn-sm btn-outline-secondary' %>
-                <% end %>
+                <%= link_to "削除", admin_user_post_post_comment_path(post_comment.post, post_comment), method: :delete, remote: true, data: { confirm: '本当に削除してもよろしいですか？' }, class: 'btn btn-sm btn-outline-secondary' %>
               </div>
             </div>
           </div>
@@ -34,5 +32,5 @@
       </div>
      </div>
     </div>
-   </div>
+  </div>
 </div>

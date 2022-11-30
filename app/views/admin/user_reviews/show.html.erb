@@ -8,11 +8,11 @@
             <%= image_tag @review.user.get_profile_image(50,50), class: "rounded-circle" %>
              </div>
              <div class="col-9">
-              <i class="far fa-user" style="color: #638c93;"></i>
+              <i class="far fa-user dark_blue"></i>
               <%= link_to admin_user_path(@review.user) do %>
               <%= @review.user.name %><% end %>さん
               <br>
-              <i class="far fa-calendar" style="color: #638c93;"></i> <%= @review.created_at.strftime('%Y年%m月%d日') %>
+              <i class="far fa-calendar dark_blue"></i> <%= @review.created_at.strftime('%Y年%m月%d日') %>
             </div>
           </div>
         </div>
@@ -23,7 +23,7 @@
             <% end %>
           </h1>
           <h2 class="card-title">公演： <%= @review.stage_name %></h2>
-          <h6 class="card-subtitle mb-2 text-muted">タグ <i class="fas fa-comments" style="color: #638c93;"></i>
+          <h6 class="card-subtitle mb-2 text-muted">タグ <i class="fas fa-comments dark_blue"></i>
             <% @review_tags.each do |tag| %>
             <%=tag.name%><%="(#{tag.reviews.count})" %>
             <% end %>
@@ -63,7 +63,7 @@
   </div>
     <div class="row">
       <div class="col-12">
-       <%= render "public/review_comments/index", review: @review %>
+       <%= render "admin/review_comments/index", review: @review %>
       </div>
        <%= link_to "レビューの一覧へ戻る", reviews_path, style: "color:#345362;" %>
       </div>

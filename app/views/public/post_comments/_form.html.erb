@@ -1,13 +1,13 @@
 <div id="flash_message">
 </div>
-  <div class="comment-box shadow-sm">
-    <h5 class="font-weight-bold"><i class="fas fa-comment-dots" style="color: #638c93;"></i><font color="#345362"> コメントフォーム</h5></font>
+  <div class="comment-box">
+    <h5 class="font-weight-bold"><i class="fas fa-comment-dots dark_blue"></i><font color="#345362"> コメントフォーム</h5></font>
     <%= form_with(model: [post, post_comment], local: false) do |f| %>
-    <div class="form-body">
+    <div class="form-body shadow-sm">
       <%= f.text_area :comment, class:"form-control", id: "post_comment_area", rows: '5', placeholder: "コメントを入力してください" %>
     </div>
-  </div>
-  <div class="submit">
-    <%= f.submit "送信する", class:"btn btn-info btn-right mt-4" %>
-  </div>
+    <div class="submit">
+      <%= f.submit "送信する", class:"btn btn-info btn-right mt-4" %>
+    </div>
     <% end %>
+  </div>

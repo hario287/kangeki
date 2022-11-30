@@ -2,7 +2,7 @@
 <div class='container'>
   <div class='row'>
     <h4 class="col-md-12 mt-3 pt-3">
-      <i class="fas fa-user"  style="color: #638c93;"></i>
+      <i class="fas fa-user dark_blue"></i>
       <strong><%= @user.name %>さんのマイページ</strong></h4>
      <%= render 'info', user: @user %>
      <span class="border-bottom" style=""></span>
@@ -11,13 +11,13 @@
 <div class='container p-10'>
   <div class='row'>
     <div class="col-md-12 pt-3">
-      <h4><i class="fas fa-pen-square" style="color: #638c93;"></i>
+      <h4><i class="fas fa-pen-square dark_blue"></i>
       <strong>投稿したレビュー</strong></h4>
       <%= render 'public/reviews/index', reviews: @reviews %></p>
     </div>
 
     <div class='col-md-12 pt-3'>
-      <h4><i class="fas fa-comment" style="color: #638c93"></i>
+      <h4><i class="fas fa-comment dark_blue"></i>
         <strong>談話室に投稿した記事</strong></h4>
       <%= render 'public/posts/index', posts: @posts %>
     </div>

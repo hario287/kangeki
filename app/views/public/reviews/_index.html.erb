@@ -27,8 +27,8 @@
         <td><%= review.rate %>
         <div id="rate<%= review.id%>"></div></td>
         <script>
-        $('#star-rate-<%= review.id %>').empty();
-          $('#rate<%= review.id%>').raty({
+          $('#rate<%= review.id %>').empty();
+          $('#rate<%= review.id %>').raty({
             size      : 36,
             starOff   : '<%= asset_path('star-off.png') %>',
             starOn    : '<%= asset_path('star-on.png') %>',
@@ -55,5 +55,6 @@
     <% end %>
   </tbody>
 </table>
-
-<%= render "layouts/raty" %>
+<div class="d-flex justify-content-center">
+  <%= paginate reviews, theme: 'twitter-bootstrap-4' %>
+</div>

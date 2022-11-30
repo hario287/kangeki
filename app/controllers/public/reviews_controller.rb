@@ -28,9 +28,10 @@ class Public::ReviewsController < ApplicationController
   end
 
   def index
+    # @reviews = Review.all #.page(params[:page])
     @user = current_user
     @review = Review.new
-    @reviews = Review.all.order(params[:sort])
+    @reviews = Review.all.order(params[:sort]).page(params[:page])
     @tag_list = Tag.all
   end
 
@@ -62,10 +63,10 @@ class Public::ReviewsController < ApplicationController
     @review = Review.new
     @tag_list = Tag.all
     if params[:keyword].present?
-      @reviews = Review.where("body LIKE ?", "%#{params[:keyword]}%")
+      @reviews = Review.where("body LIKE ?", "%#{params[:keyword]}%").page(params[:page])
       @keyword = params[:keyword]
     else
-      @reviews = Review.all
+      @reviews = Review.page(params[:page])
     end
   end
 

@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'review_comments/destroy'
+  end
   root "public/homes#top"
 
   # ユーザー用
@@ -54,8 +57,12 @@ Rails.application.routes.draw do
   # 管理者側
   namespace :admin do
     resources :users, only: [:index, :show, :edit, :update]
-    resources :user_posts, only: [:index, :show, :destroy]
-    resources :user_reviews, only: [:index, :show, :destroy]
+    resources :user_posts, only: [:index, :show, :destroy] do
+      resources :post_comments, only: [:destroy]
+    end
+    resources :user_reviews, only: [:index, :show, :destroy] do
+      resources :review_comments, only: [:destroy]
+    end
     resources :topics, only: [:index, :create, :edit, :update]
     # 検索
     get "search" => "searches#search"

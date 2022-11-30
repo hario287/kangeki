@@ -8,7 +8,7 @@
             <%= image_tag @post.user.get_profile_image(50,50), class: "rounded-circle" %>
              </div>
              <div class="col-9">
-              <i class="far fa-user" style="color: #638c93;"></i>
+              <i class="far fa-user dark_blue"></i>
               <%= link_to user_path(@post.user), class: "text-reset" do %>
               <%= @post.user.name %><% end %>さん
               <br>
@@ -18,7 +18,7 @@
         </div>
         <div class="card-body">
           <h2 class="card-title"><%= @post.title %></h2>
-          <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-comments" style="color: #638c93;"></i>
+          <h6 class="card-subtitle mb-2 text-muted"><i class="fas fa-comments dark_blue"></i>
             <%= @post.topic.topic_name %>
           </h6>
           <% if @post.post_image.attached? %>
