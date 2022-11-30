@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <div class='container'>
   <div class='row'>
+    <% if @user.is_deleted == true %>
+      <div class="col-12 col-sm-10 col-lg-8 col-xl-6 m-4">
+        <h4>このユーザーは退会しています。</h4>
+          <%= link_to :back do %>
+        <div class="col-12 pt-4 back-link">前のページに戻る
+        </div>
+      </div>
+      <% end %>
+    <% else %>
     <h4 class="col-md-12 mt-3 pt-3">
       <i class="fas fa-user dark_blue"></i>
       <strong><%= @user.name %>さんのマイページ</strong></h4>
@@ -23,3 +32,4 @@
     </div>
   </div>
 </div>
+<% end %>
