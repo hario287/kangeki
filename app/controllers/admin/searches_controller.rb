@@ -4,12 +4,13 @@ class Admin::SearchesController < ApplicationController
   def search
     @range = params[:range]
 
-    if @range == "User"
+    if @range == "ユーザー"
       @user = User.looks(params[:search], params[:word])
-    elsif @range == "Review"
-      @reviews = Review.looks(params[:search], params[:word])
+    elsif @range == "レビュー"
+      @reviews = Review.looks(params[:search], params[:word]).page(params[:page])
+    elsif @range == "談話室"
+      @posts = Post.looks(params[:search], params[:word]).page(params[:page])
     else
-      @posts = Post.looks(params[:search], params[:word])
     end
   end
 end

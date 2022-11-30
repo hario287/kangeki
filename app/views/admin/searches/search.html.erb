@@ -3,12 +3,13 @@
     <div class='col-md-12'>
       <h3 class="col mb-4" style="font-weight:bold; color: #345362;">
         <i class="fas fa-search"></i> 検索結果</h3>
-        <% if @range == "User" %>
+        <% if @range == "ユーザー" %>
           <%= render 'admin/users/list', user: @user %>
-        <% elsif @range == "Review" %>
+        <% elsif @range == "レビュー" %>
           <%= render 'admin/user_reviews/list', reviews: @reviews %>
-        <% else %>
+        <% elsif @range == "談話室" %>
           <%= render 'admin/user_posts/list', posts: @posts %>
+        <% else %>
         <% end %>
     </div>
   </div>
