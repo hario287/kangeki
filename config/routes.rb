@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'review_comments/destroy'
-  end
+
   root "public/homes#top"
 
   # ユーザー用
@@ -24,14 +22,13 @@ Rails.application.routes.draw do
 
   # ユーザー側
   scope module: :public do
-     # root 'homes#top'
-     get "about" => "homes#about", as: "about"
+      get "about" => "homes#about", as: "about"
 
-     resources :users do
+      resources :users do
        get "favorites" => "users#favorites", as: "favorites"
        resource :relationships, only: [:create, :destroy]
-       get "followings" => "relationships#followings", as: "followings"
-       get "followers" => "relationships#followers", as: "followers"
+     get "followings" => "relationships#followings", as: "followings"
+     get "followers" => "relationships#followers", as: "followers"
      end
 
      # 退会機能

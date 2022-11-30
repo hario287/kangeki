@@ -4,22 +4,21 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  # プロフィール画像
   has_one_attached :profile_image
-
+  # 投稿
   has_many :posts, dependent: :destroy
-  has_many :favorites, dependent: :destroy
   has_many :post_comments, dependent: :destroy
-
+  # フォロー
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
   has_many :followers, through: :reverse_of_relationships, source: :follower
   has_many :followings, through: :relationships, source: :followed
-
+  # レビュー
   has_many :reviews, dependent: :destroy
   has_many :review_comments, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
-  # 閲覧数
-  has_many :view_counts, dependent: :destroy
   # バリデーション
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true
 
