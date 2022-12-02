@@ -8,7 +8,7 @@
             <%= image_tag @review.user.get_profile_image(50,50), class: "rounded-circle" %>
              </div>
              <div class="col-9">
-              <i class="far fa-user" style="color: #638c93;"></i>
+              <i class="far fa-user dark_blue"></i>
               <%= link_to user_path(@review.user.id), class: "text-reset" do %>
               <%= @review.user.name %><% end %>さん
               <br>
