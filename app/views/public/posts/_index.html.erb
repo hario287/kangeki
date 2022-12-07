@@ -16,7 +16,7 @@
             <%= image_tag post.user.get_profile_image(50,50), class: "rounded-circle" %>
           <% end %>
         </td>
-        <td><%= link_to post.title,post_path(post.id), class: "text-reset" %></td>
+        <td><%= link_to post.title,post_path(post.id) %></td>
         <td><%= post.topic.topic_name %></td>
         <td>コメント数 <%= post.post_comments.count %></td>
       </tr>

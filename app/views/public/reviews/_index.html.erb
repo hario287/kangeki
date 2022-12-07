@@ -1,3 +1,6 @@
+<!--memo-->
+<!--<ul></ul>-->
+<!--<li></li>-->
 <table class='table mt-2'>
   <thead>
     <tr>
@@ -18,7 +21,7 @@
           <% end %>
         </td>
 
-        <td><%= link_to review.stage_name,review_path(review.id), class: "text-reset" %></td>
+        <td><%= link_to review.stage_name,review_path(review.id) %></td>
 
         <td class="card-subtitle mb-2 text-muted">
           <%= review.tags.map(&:name).join(', ') %>
