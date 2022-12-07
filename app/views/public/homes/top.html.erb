@@ -10,7 +10,7 @@
           気になる話題で他のユーザーとコミュニケーションができます。</p>
     </div>
 
-    <div class="col-5 pt-3 mx-auto" >
+    <div class="col-6 pt-3 mx-auto" >
     <%= link_to 'ゲストログイン', users_guest_sign_in_path, class: "btn btn-outline-secondary btn-sm btn-block mb-3 text-nowrap", method: :post %>
     <%= link_to 'ログイン',new_user_session_path, class: "btn btn-outline-info btn-sm btn-block mb-3" %>
     <%= link_to '新規登録',new_user_registration_path, class: "btn btn-outline-success btn-sm btn-block" %>
@@ -20,9 +20,9 @@
   <% if user_signed_in? %>
     <div class="top-text">
       <h5 class="mb-3">ようこそ、kangekiへ</h5>
-      <div class="col-5 pt-3 mx-auto" >
-        <%= link_to "　新規レビューを投稿する　", new_review_path , class: "btn btn-outline-info btn-sm btn-block mb-4 text-nowrap" %>
-        <%= link_to "　新規話題を投稿する　", new_post_path , class: "btn btn-outline-info btn-sm btn-block mb-4 text-nowrap" %>
+      <div class="col-7 pt-3 mx-auto" >
+        <%= link_to "新規レビューを投稿する", new_review_path , class: "btn btn-outline-info btn-sm btn-block mb-4 text-nowrap" %>
+        <%= link_to "新規話題を投稿する", new_post_path , class: "btn btn-outline-info btn-sm btn-block mb-4 text-nowrap" %>
       </div>
   <% end %>
     </div>
