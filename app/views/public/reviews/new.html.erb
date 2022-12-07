@@ -1,5 +1,5 @@
 <div class="row no-gutters">
-  <div class="col-md-6 col-sm-9 mx-2 mx-sm-auto px-0 my-3">
+  <div class="mx-auto col-12 col-sm-11 col-lg-8 col-xl-6 mt-4">
     <h3 class="font-weight-bold p-3">新しくレビューを投稿する</h3>
       <div class="form-body p-3">
         <%= form_with model: @review, local:true do |f| %>
@@ -18,7 +18,7 @@
         <div class="form-group mb-3 mt-4">
           <%= f.label "タグつけ　" %>
           <%= f.text_field :name %>
-          <p class="col ml-5">
+          <p class="col ml-4">
             *タグは(,)区切りで複数入力できます
             <br>
             *ネタバレを含む場合、「ネタバレ注意」のタグ付けを推奨しております
