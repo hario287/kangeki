@@ -27,19 +27,20 @@
           <%= review.tags.map(&:name).join(', ') %>
         </td>
 
-        <td><%= review.rate %>
-        <div id="rate<%= review.id%>"></div></td>
-        <script>
-          $('#rate<%= review.id %>').empty();
-          $('#rate<%= review.id %>').raty({
-            size      : 36,
-            starOff   : '<%= asset_path('star-off.png') %>',
-            starOn    : '<%= asset_path('star-on.png') %>',
-            half      : false,
-            readOnly: true,
-            score: <%= review.rate %>,
-          });
-        </script>
+        <td>
+          <div id="rate<%= review.id%>"></div>
+        </td>
+          <script>
+            $('#rate<%= review.id %>').empty();
+            $('#rate<%= review.id %>').raty({
+              size      : 36,
+              starOff   : '<%= asset_path('star-off.png') %>',
+              starOn    : '<%= asset_path('star-on.png') %>',
+              half      : false,
+              readOnly: true,
+              score: <%= review.rate %>,
+            });
+          </script>
 
       <% if user_signed_in? %>
         <td id="favorite_buttons_<%= review.id %>">

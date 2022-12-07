@@ -22,26 +22,25 @@
               <%= image_tag @review.review_image, class: "card-img-top" %>
             <% end %>
           </h1>
-          <h2 class="card-title">公演： <%= @review.stage_name %></h2>
+          <h2 class="card-title">公演名： <%= @review.stage_name %></h2>
           <h6 class="card-subtitle mb-2 text-muted">タグ <i class="fas fa-comments dark_blue"></i>
             <% @review_tags.each do |tag| %>
             <%=tag.name%><%="(#{tag.reviews.count})" %>
             <% end %>
           </h6>
-          <div id="rate<%= @review.id%>"></div>
-          <p class="card-text">満足度： <%= @review.rate %></p>
+          <p class="card-text">満足度：<span id="rate<%= @review.id%>"></span></p>
           <script>
-          $('#rate<%= @review.id%>').raty({
-            size      : 36,
-            starOff   : '<%= asset_path('star-off.png') %>',
-            starOn    : '<%= asset_path('star-on.png') %>',
-            half      : false,
-            readOnly: true,
-            score: <%= @review.rate %>,
-          });
+            $('#rate<%= @review.id%>').raty({
+              size      : 36,
+              starOff   : '<%= asset_path('star-off.png') %>',
+              starOn    : '<%= asset_path('star-on.png') %>',
+              half      : false,
+              readOnly: true,
+              score: <%= @review.rate %>,
+            });
           </script>
           <p class="card-text">団体： <%= @review.group %></p>
-          <p class="card-text">感想・レビュー<br>
+          <p class="card-text">感想・レビュー：
             <%= h(@review.body).gsub(/\n|\r|\r\n/, "<br>").html_safe %>
           </p>
 
