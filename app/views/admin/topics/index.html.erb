@@ -29,6 +29,7 @@
             <tr>
               <td class=""><%= topic.topic_name %></td>
               <td class="text-center"><%= link_to '   編集する  ', edit_admin_topic_path(topic.id), class: "btn btn-sm btn-info" %></td>
+              <!--<td class="text-center">< %= link_to '   削除する  ', admin_topic_path(topic.id), method: :delete, remote: true, data: { confirm: '本当に削除しますか？' }, class: "btn btn-sm btn-info" %></td>-->
             </tr>
           <% end %>
         </tbody>

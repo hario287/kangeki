@@ -1,4 +1,6 @@
 class Admin::TopicsController < ApplicationController
+  before_action :authenticate_admin!
+
   def index
     @topic = Topic.new
     @topics = Topic.all
@@ -19,6 +21,12 @@ class Admin::TopicsController < ApplicationController
     @topic.update(topic_params)
     redirect_to admin_topics_path
   end
+
+  # def destroy
+  #   @topic = Topic.find(params[:id])
+  #   @topic.destroy
+  #   redirect_to admin_topics_path
+  # end
 
   private
     def topic_params
