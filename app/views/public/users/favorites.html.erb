@@ -1,0 +1,65 @@
+<div class='container'>
+  <div class='row'>
+    <h4 class="col-md-12 mt-3 pt-3">
+    <i class="fas fa-heart dark_blue"></i>
+    <strong><%= @user.name %>さんがいいねしたレビュー</strong></h4>
+    <table class='table mt-3'>
+      <thead>
+        <tr>
+          <th>ユーザー</th>
+          <th>公演名</th>
+          <th>タグ</th>
+          <th>満足度</th>
+          <th>いいね</th>
+          <th colspan="5"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @favorite_reviews.each do |review|%>
+          <tr>
+            <td>
+              <%= link_to user_path(review.user) do %>
+                <%= image_tag review.user.get_profile_image(50,50), class: "rounded-circle" %>
+              <% end %>
+            </td>
+
+            <td><%= link_to review.stage_name,review_path(review.id) %></td>
+
+            <td class="card-subtitle mb-2 text-muted">
+              <%= review.tags.map(&:name).join(', ') %>
+            </td>
+
+            <td>
+              <div id="rate<%= review.id%>"></div>
+            </td>
+              <script>
+                $('#rate<%= review.id %>').empty();
+                $('#rate<%= review.id %>').raty({
+                  size      : 36,
+                  starOff   : '<%= asset_path('star-off.png') %>',
+                  starOn    : '<%= asset_path('star-on.png') %>',
+                  half      : false,
+                  readOnly: true,
+                  score: <%= review.rate %>,
+                });
+              </script>
+
+          <% if user_signed_in? %>
+            <td id="favorite_buttons_<%= review.id %>">
+              <!--リンクなし-->
+              <% if review.favorited_by?(current_user) %>
+                <i class="fas fa-heart" aria-hidden="true" style="color: #9F002D;"></i>
+                <%= review.favorites.count %>
+              <% else %>
+                <i class="far fa-heart" aria-hidden="true" style="color: #9F002D;"></i>
+                <%= review.favorites.count %>
+              <% end %>
+            </td>
+          <% end %>
+
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

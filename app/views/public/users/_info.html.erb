@@ -28,6 +28,7 @@
 </table>
 
 <div class="info ml-2 mb-2">
+  <!--フォロー-->
   <% if current_user != user%>
     <% if current_user.following?(user) %>
       <%= link_to "フォロー中", user_relationships_path(user.id), class: "btn btn-info rounded-pill", method: :delete %>
@@ -35,10 +36,10 @@
       <%= link_to "フォローする", user_relationships_path(user.id), class: "btn btn-info rounded-pill", method: :post %>
     <% end %>
   <% end %>
+  <!--プロフィール編集-->
+  <% if user.name != "ゲストユーザー" %>
+    <% if user == current_user %>
+      <p><%= link_to "プロフィール編集", edit_user_path(user), class: "btn btn-outline-secondary" %></p>
+    <% end %>
+  <% end %>
 </div>
-
-      <% if user.name != "ゲストユーザー" %>
-        <% if user == current_user %>
-          <p class="ml-4"><%= link_to "プロフィール編集", edit_user_path(user), class: "btn btn-outline-secondary" %></p>
-        <% end %>
-      <% end %>

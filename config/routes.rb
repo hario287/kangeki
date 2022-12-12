@@ -25,10 +25,12 @@ Rails.application.routes.draw do
       get "about" => "homes#about", as: "about"
 
       resources :users do
-       get "favorites" => "users#favorites", as: "favorites"
-       resource :relationships, only: [:create, :destroy]
-     get "followings" => "relationships#followings", as: "followings"
-     get "followers" => "relationships#followers", as: "followers"
+      member do
+      get "favorites" => "users#favorites", as: "favorites"
+      end
+      resource :relationships, only: [:create, :destroy]
+      get "followings" => "relationships#followings", as: "followings"
+      get "followers" => "relationships#followers", as: "followers"
      end
 
      # 退会機能
