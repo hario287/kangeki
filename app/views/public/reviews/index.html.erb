@@ -8,8 +8,9 @@
     </div>
 
     <div class='col-md-8 mt-3 offset'>
-      <h2 class="font-weight-bold"><font color="#345362">感想・レビュー</font></h2>
-      <span style="font-weight:bold;">並べ替え :</span>
+      <h2 class="font-weight-bold"><font color="#345362">感想・レビュー</h2>
+      <p class="mt-2" style="font-weight:bold;"><i class="fas fa-heart dark_blue"></i><%= link_to " いいねしたレビューを見る", favorites_user_path(@user.id), class: "text-reset" %></font></p>
+      <span class="ml-2" style="font-weight:bold;">並べ替え :</span>
       <%= link_to "新しい順", reviews_path(sort: 'created_at DESC'), class: "btn btn-sm btn-info" %>
       <%= link_to "満足度が高い順", reviews_path(sort: 'rate DESC'), class: "btn btn-sm btn-info" %>
       <%= render 'index', reviews: @reviews %>

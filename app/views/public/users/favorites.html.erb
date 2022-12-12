@@ -1,5 +1,5 @@
 <div class='container'>
-  <div class='row'>
+  <div class='row mx-sm-auto px-0'>
     <h4 class="col-md-12 mt-3 pt-3">
     <i class="fas fa-heart dark_blue"></i>
     <strong><%= @user.name %>さんがいいねしたレビュー</strong></h4>
@@ -61,5 +61,6 @@
         <% end %>
       </tbody>
     </table>
+    <%= link_to "一覧へ戻る", reviews_path, style: "color:#345362;" %>
   </div>
 </div>
