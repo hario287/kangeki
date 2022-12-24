@@ -47,9 +47,6 @@
           <div id="favorite_buttons_<%= @review.id %>">
             <%= render 'public/favorites/favorite', review: @review %>
           </div>
-          <p class="comment_count">
-            <%= "コメント" + @review.review_comments.count.to_s + "件" %>
-          </p>
 
       <div class="row">
         <div class="col-12">

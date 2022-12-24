@@ -6,7 +6,7 @@
   <h5 class="font-weight-bold"><i class="fas fa-search dark_blue"></i><font color="#345362"> キーワードで検索</font></h5>
     <% if user_signed_in? %>
     <%= form_with url: search_reviews_path, local: true, method: :get do |f| %>
-      <%= f.text_field :keyword, :size=> "27" %>
+      <%= f.text_field :keyword %>
       <% f.submit %>
     <% end %>
     <% else %>

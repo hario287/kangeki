@@ -1,6 +1,9 @@
 <div class="card shadow-sm mt-3 mb-3">
   <div class="card-body">
     <h4 class="card-title font-weight-bold"><i class="fas fa-comment dark_blue"></i><font color="#345362"> コメント</font></h4>
+      <p class="comment_count">
+        <%= "(" + review.review_comments.count.to_s + "件)" %>
+      </p>
         <% review.review_comments.each do |review_comment| %>
           <%= image_tag review_comment.user.get_profile_image(40, 40), class: "rounded-circle" %>
           <i class="far fa-user dark_blue"></i>
